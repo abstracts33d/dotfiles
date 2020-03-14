@@ -1,0 +1,57 @@
+# ALIASES
+alias la='ls -la'
+alias hist='cat ~/.zsh_history'
+
+alias timestamp='date +"%Y-%m-%d_%H-%M-%S"'
+alias compact_timestamp='date "+%Y%m%d%H%M%S"'
+
+#openvpn 
+alias startvpn='sudo openvpn --config ~/.ssh/openvpn/client.ovpn --mute-replay-warnings'
+
+#keychain 
+alias keys='eval `keychain --eval --agents ssh,gpg ~/.ssh/s33d_ed25519 62096432EE22D410FF04A7C7566EAD07A1A6FD88`'
+
+#Docker API
+alias dockerAPI='sudo /usr/bin/dockerd -H tcp://0.0.0.0:4243 -H unix:///var/run/docker.sock'
+
+# Generate Rails Project Based on Devise rails-template
+alias rails_template='rails new \
+  --database postgresql \
+  --webpack \
+  -m https://raw.githubusercontent.com/abstracts33d/rails-templates/master/devise.rb \
+  $1'
+
+
+
+# Get External IP / local IPs
+alias ip="curl ipinfo.io/ip"
+alias ips="ifconfig -a | perl -nle'/(\d+\.\d+\.\d+\.\d+)/ && print $1'"
+alias speedtest="wget -O /dev/null http://speedtest.wdc01.softlayer.com/downloads/test10.zip"
+
+# Quickly serve the current directory as HTTP
+alias rserve='ruby -run -e httpd . -p 8000'
+alias pserve='python3 -m http.server 8000'
+alias nserve='http-server -p 8000'
+alias sserve='static -p 8000'
+
+# FUNCTIONS
+grep_hist() {hist|grep $1}
+
+# docker-compose
+alias c='docker-compose'
+alias cb='docker-compose build'
+alias cup='docker-compose up'
+alias cr='docker-compose run --service-ports --rm'
+alias crl='docker-compose run --service-ports --rm local'
+alias crd='docker-compose run --service-ports --rm develop'
+alias crt='docker-compose run --rm test'
+alias crp='docker-compose run --rm provision'
+alias crci='docker-compose run --rm ci'
+alias crwt='docker-compose run --rm watchtest'
+alias cps='docker-compose ps'
+alias clogs='docker-compose logs'
+
+crm(){
+ docker-compose stop $1
+   docker-compose rm --force $1
+   }

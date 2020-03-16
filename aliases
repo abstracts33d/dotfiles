@@ -9,7 +9,7 @@ alias compact_timestamp='date "+%Y%m%d%H%M%S"'
 alias startvpn='sudo openvpn --config ~/.ssh/openvpn/client.ovpn --mute-replay-warnings'
 
 #keychain 
-alias keys='eval `keychain --eval --agents ssh,gpg ~/.ssh/s33d_ed25519 62096432EE22D410FF04A7C7566EAD07A1A6FD88`'
+alias keys='eval `keychain --eval --agents ssh,gpg ~/.keys/ssh/s33d_ed25519 62096432EE22D410FF04A7C7566EAD07A1A6FD88`'
 
 #Docker API
 alias dockerAPI='sudo /usr/bin/dockerd -H tcp://0.0.0.0:4243 -H unix:///var/run/docker.sock'

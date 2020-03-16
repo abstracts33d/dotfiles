@@ -67,11 +67,11 @@ export PATH="$PATH:~/bin"
 
 # CUSTOMIZE POWERLEVEL9K
 # Only use if not in a login shell
-if ! [[ -o login ]]; then
+#if ! [[ -o login ]]; then
   # Only use icons if inside gnome-terminal
-  if [ -n "${VTE_VERSION}" ]; then
+  #if [ -n "${VTE_VERSION}" ]; then
     POWERLEVEL9K_MODE='awesome-fontconfig'
-  fi
+  #fi
   POWERLEVEL9K_LEFT_PROMPT_ELEMENTS=(context dir vcs nvm rbenv virtualenv)
   POWERLEVEL9K_RIGHT_PROMPT_ELEMENTS=(status ssh root_indicator background_jobs history os_icon)
   POWERLEVEL9K_PROMPT_ON_NEWLINE=true
@@ -80,5 +80,5 @@ if ! [[ -o login ]]; then
   POWERLEVEL9K_SHORTEN_STRATEGY=truncate_folders
   POWERLEVEL9K_SHORTEN_DELIMITER=""
   source $ZSH_CUSTOM/themes/powerlevel10k/powerlevel10k.zsh-theme
-fi
+#fi
 

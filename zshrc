@@ -1,6 +1,6 @@
 # Load oh-my-zsh
-export ZSH="~/.oh-my-zsh"
-export ZSH_CUSTOM="~/oh-my-zsh/custom"
+export ZSH="/home/$USER/.oh-my-zsh"
+export ZSH_CUSTOM="$ZSH/custom"
 ZSH_THEME="agnoster"
 export LD_LIBRARY_PATH="/opt/intel/mediasdk/lib"
 

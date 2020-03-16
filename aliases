@@ -55,3 +55,6 @@ crm(){
  docker-compose stop $1
    docker-compose rm --force $1
    }
+
+alias gst_all="find . -maxdepth 1 -mindepth 1 -type d -exec sh -c '(echo {} && cd {} && git status -s && echo)' \;"
+alias count_dirs="ls -l .vim | grep -c ^d"

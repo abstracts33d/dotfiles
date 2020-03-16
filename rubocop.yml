@@ -1,0 +1,21 @@
+# .rubocop.yml
+AllCops:
+  Exclude:
+    - 'db/**/*'
+    - 'config/**/*'
+    - 'script/**/*'
+    - 'bin/*'
+    - !ruby/regexp /old_and_unused\.rb$/
+
+Layout/LineLength:
+  # This will disable the rule completely, regardless what other options you put
+  Enabled: false
+
+Metrics/MethodLength:
+  Enabled: false
+
+Style/ClassAndModuleChildren:
+  Enabled: false
+
+Style/Documentation:
+  Enabled: false

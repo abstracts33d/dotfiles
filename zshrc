@@ -48,7 +48,7 @@ if [ "$HOST"  = 'KracH' ]; then
   add-zsh-hook chpwd load-nvmrc
   load-nvmrc
 else
-  echo "Skiping automatic nvm switching nvm or nvm_find_nvmrc not installed" 
+  echo "Skiping automatic nvm switching $HOST != KracH" 
 fi
 
 # Store your own aliases in the ~/.aliases file and load the here.

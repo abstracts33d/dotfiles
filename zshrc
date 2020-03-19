@@ -25,10 +25,8 @@ plugins=(
 source $ZSH/oh-my-zsh.sh
 
 
-# if nvm not installed 
-if ! type "nvm" > /dev/null || ! type "nvm_find_nvmrc" > /dev/null; then
-  echo "Skiping automatic nvm switching nvm or nvm_find_nvmrc not installed"
-else
+# if $HOST != KracH 
+if [ "$HOST"  = 'KracH' ]; then
   autoload -U add-zsh-hook
   load-nvmrc() {
     local node_version="$(nvm version)"
@@ -49,6 +47,8 @@ else
   }
   add-zsh-hook chpwd load-nvmrc
   load-nvmrc
+else
+  echo "Skiping automatic nvm switching nvm or nvm_find_nvmrc not installed" 
 fi
 
 # Store your own aliases in the ~/.aliases file and load the here.
@@ -64,7 +64,7 @@ export TERM=xterm-256color
 
 # Add ~/bin to path
 export PATH="$PATH:~/bin"
-
+export PATH="$(yarn global bin):$PATH"
 # CUSTOMIZE POWERLEVEL9K
 # Only use if not in a login shell
 #if ! [[ -o login ]]; then

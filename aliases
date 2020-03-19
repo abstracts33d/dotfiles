@@ -1,10 +1,13 @@
 # ALIASES
+alias m=make
 alias la='ls -la'
 alias hist='cat ~/.zsh_history'
 
 alias timestamp='date +"%Y-%m-%d_%H-%M-%S"'
 alias compact_timestamp='date "+%Y%m%d%H%M%S"'
 
+#init DockerMakefile
+alias initDockerMakefile="curl https://raw.githubusercontent.com/theabstractconnection/docker-compose_makefile/master/install.sh | bash"
 #openvpn 
 alias startvpn='sudo openvpn --config ~/.ssh/openvpn/client.ovpn --mute-replay-warnings'
 

@@ -1,3 +1,5 @@
+#!/bin/sh
+
 backup() {
   target=$1
   if [ -e "$target" ]; then           # Does the config file already exist?
@@ -8,7 +10,6 @@ backup() {
   fi
 }
 
-#!/bin/zsh
 for name in *; do
   if [ ! -d "$name" ]; then
     target="$HOME/.$name"
@@ -27,6 +28,6 @@ REGULAR="\\033[0;39m"
 YELLOW="\\033[1;33m"
 GREEN="\\033[1;32m"
 
-zsh ~/.zshrc
+# zsh ~/.zshrc
 
 echo "👌  Carry on with git setup!"

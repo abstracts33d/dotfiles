@@ -18,7 +18,6 @@ alias speedtest="wget -O /dev/null http://speedtest.wdc01.softlayer.com/download
 alias rserve='ruby -run -e httpd . -p 8000'
 alias pserve='python3 -m http.server 8000'
 alias nserve='http-server -p 8000'
-alias sserve='static -p 8000'
 
 # FUNCTIONS
 grep_hist() {hist|grep $1}
@@ -36,11 +35,6 @@ alias crci='docker-compose run --rm ci'
 alias crwt='docker-compose run --rm watchtest'
 alias cps='docker-compose ps'
 alias clogs='docker-compose logs'
-
-crm(){
- docker-compose stop $1
-   docker-compose rm --force $1
-   }
 
 alias gst_all="find . -maxdepth 1 -mindepth 1 -type d -exec sh -c '(echo {} && cd {} && git status -s && echo)' \;"
 alias count_dirs="ls -l .vim | grep -c ^d"

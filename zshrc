@@ -1,32 +1,74 @@
-# Load oh-my-zsh
+# ZSH CONFIGS FILE ORDER AND CONDITIONS
+# .zshenv 
+# →[.zprofile if login] 
+# → [.zshrc if interactive] 
+# → [.zlogin if login] 
+# → [.zlogout sometimes]
+
+# CHECK IF ON DESKTOP OR SERVER
+MY_HOSTS=("KracH")
+if [[ ${MY_HOSTS[(ie)$HOST]} -le ${#MY_HOSTS} ]]; then
+  IS_SERVER=false
+  ZSH_POWERLEVEL_VERSION="10"
+  echo 'Welcome this is one of your DESKTOP MACHINE'
+else
+  IS_SERVER=false
+  ZSH_POWERLEVEL_VERSION="9"
+  echo 'Welcome this is one of your SERVER MACHINE'
+fi
+
+
+if [ "$IS_SERVER"=false ] && [ ZSH_POWERLEVEL_VERSION="10" ] ; then
+  # Enable Powerlevel10k instant prompt. Should stay close to the top of ~/.zshrc.
+  # Initialization code that may require console input (password prompts, [y/n]
+  # confirmations, etc.) must go above this block; everything else may go below.
+  if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]; then
+    source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
+  fi
+fi
+
+
+
+# LOAD OH-MY-ZSH
+echo 'Loading oh-my-zsh'
 export ZSH="/home/$USER/.oh-my-zsh"
 export ZSH_CUSTOM="$ZSH/custom"
-ZSH_THEME="agnoster"
-export LD_LIBRARY_PATH="/opt/intel/mediasdk/lib"
+export ZSH_THEME="agnoster"
 
-plugins=(
-	ruby
-	rbenv
-	rails
-	bundler
-	nvm
-	dotenv
-	git
-	gitfast
-	common-aliases
-	zsh-syntax-highlighting
-	history-substring-search
-	shrink-path
-	docker
-	yarn
-	archlinux
-)
+if [ "$IS_SERVER"=false ] ; then
+  plugins=(
+    common-aliases
+    zsh-syntax-highlighting
+    shrink-path
+    history-substring-search
+    git
+    gitfast
+    dotenv
+    ruby
+    rbenv
+    rails
+    bundler
+    nvm
+    yarn
+    docker
+    archlinux
+  )
+else
+  plugins=(
+    common-aliases
+    zsh-syntax-highlighting
+    shrink-path
+    history-substring-search
+    git
+    gitfast
+  )
+fi
 
 source $ZSH/oh-my-zsh.sh
 
-
-# if $HOST != KracH 
-if [ "$HOST"  = 'KracH' ]; then
+# ADD ZSH HOOK TO AUTOMATICALY SWITCH NODE VERSIONS WITH NVM
+if [ "$IS_SERVER"=false ] ; then
+  echo 'Loading automatic nvm switching'
   autoload -U add-zsh-hook
   load-nvmrc() {
     local node_version="$(nvm version)"
@@ -47,38 +89,24 @@ if [ "$HOST"  = 'KracH' ]; then
   }
   add-zsh-hook chpwd load-nvmrc
   load-nvmrc
-else
-  echo "Skiping automatic nvm switching $HOST != KracH" 
 fi
 
-# Store your own aliases in the ~/.aliases file and load the here.
+# SOURCE ALIASES
 [[ -f "$HOME/.aliases" ]] && source "$HOME/.aliases"
 
-# Export env variables
-export JAVA_HOME=/usr/lib/jvm/default
-export LANG=en_US.UTF-8
-export LC_ALL=en_US.UTF-8
-export EDITOR='vim'
-export GPG_TTY=$(tty)
-export TERM=xterm-256color
+# POWERLEVEL9K/POWERLEVEL10K
+# 9k config must be sourced before initialization
+if [ ZSH_POWERLEVEL_VERSION="9" ]; then
+  [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
+fi
 
-# Add ~/bin to path
-export PATH="$PATH:~/bin"
-export PATH="$(yarn global bin):$PATH"
-# CUSTOMIZE POWERLEVEL9K
-# Only use if not in a login shell
-#if ! [[ -o login ]]; then
-  # Only use icons if inside gnome-terminal
-  #if [ -n "${VTE_VERSION}" ]; then
-    POWERLEVEL9K_MODE='awesome-fontconfig'
-  #fi
-  POWERLEVEL9K_LEFT_PROMPT_ELEMENTS=(context dir vcs nvm rbenv virtualenv)
-  POWERLEVEL9K_RIGHT_PROMPT_ELEMENTS=(status ssh root_indicator background_jobs history os_icon)
-  POWERLEVEL9K_PROMPT_ON_NEWLINE=true
-  POWERLEVEL9K_PROMPT_ADD_NEWLINE=true
-  POWERLEVEL9K_SHORTEN_DIR_LENGTH=1
-  POWERLEVEL9K_SHORTEN_STRATEGY=truncate_folders
-  POWERLEVEL9K_SHORTEN_DELIMITER=""
-  source $ZSH_CUSTOM/themes/powerlevel10k/powerlevel10k.zsh-theme
-#fi
+# SOURCE POWERLEVEL10k (RETRO COMPATIBLE WITH 9K)
+source $ZSH_CUSTOM/themes/powerlevel10k/powerlevel10k.zsh-theme
+
+# 10k config must be sourced before initialization
+# To customize prompt, run `p10k configure`
+if [ ZSH_POWERLEVEL_VERSION="10" ]; then
+  [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
+fi
+
 

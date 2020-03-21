@@ -1,17 +1,31 @@
 
 # RBENV
-echo " ☠ Loading RBENV"
-
-export PATH="$HOME/.rbenv/bin:$PATH"
-eval "$(rbenv init -)"
+printf " ☠ Loading RBENV: "
+if [ -s "$HOME/.rbenv/bin/rbenv" ]; then
+  export PATH="$HOME/.rbenv/bin:$PATH"
+  eval "$(rbenv init -)"
+  printf "%s\n" "✓"
+else 
+  printf "%s\n" "✖"
+fi 
 
 # NVM
-echo " ☠ Loading NVM"
-export NVM_DIR="$HOME/.nvm"
-[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
-[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
+printf " ☠ Loading NVM: "
+if [ -s "$HOME/.nvm/nvm.sh" ]; then
+  export NVM_DIR="$HOME/.nvm"
+  \. "$NVM_DIR/nvm.sh" # This loads nvm
+  [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
+  printf "%s\n" "✓"
+else 
+  printf "%s\n" "✖"
+fi
 
 # YARN
-echo " ☠ Loading YARN"
-export PATH="$(yarn global bin):$PATH"
+printf " ☠ Loading YARN: "
+if [ -s "$HOME/.yarn/bin/yarn" ]; then
+  export PATH="$(yarn global bin):$PATH"
+  printf "%s\n" "✓"
+else
+  printf "%s\n" "✖"
+fi
 

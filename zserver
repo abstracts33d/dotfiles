@@ -22,7 +22,6 @@ fi
 
 # YARN
 printf " ☠ Loading YARN: "
-if [ -s "$HOME/.yarn/bin/yarn" ]; then
 if [[ "$(where yarn)" == *"not found"* ]]; then
   printf "%s\n" "✖"
 else

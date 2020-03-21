@@ -8,4 +8,3 @@ export GPG_TTY=$(tty)
 export TERM=xterm-256color
 
 export PATH="$PATH:~/bin"
-export PATH="$(yarn global bin):$PATH"

@@ -21,6 +21,7 @@ else
   echo ' ☠ Welcome this is one of your SERVER machine'
   HOST_TYPE=server
   ZSH_POWERLEVEL_VERSION=9
+  echo ' ☠ Loading .zserver'
   source .zserver
 fi
 

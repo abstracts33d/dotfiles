@@ -1,5 +1,4 @@
 # EXPORT ENVIRONMENT VARIABLES
-echo ' ☠ Exporting ENV vars'
 export LD_LIBRARY_PATH="/opt/intel/mediasdk/lib"
 export JAVA_HOME=/usr/lib/jvm/default
 export LANG=en_US.UTF-8

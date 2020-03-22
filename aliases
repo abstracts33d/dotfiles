@@ -4,7 +4,8 @@ alias la='ls -la'
 alias hist='cat ~/.zsh_history'
 alias timestamp='date +"%Y-%m-%d_%H-%M-%S"'
 alias compact_timestamp='date "+%Y%m%d%H%M%S"'
-alias initDockerMakefile="curl https://raw.githubusercontent.com/theabstractconnection/docker-compose_makefile/master/install.sh | bash"
+alias initDockerMakefile="curl -H "Cache-Control: no-cache" https://raw.githubusercontent.com/theabstractconnection/docker-compose_makefile/master/install.sh | bash"
+alias updateDockerMakefile="INSTALL_TYPE=update initDockerMakefile"
 alias startvpn='sudo openvpn --config ~/.ssh/openvpn/client.ovpn --mute-replay-warnings'
 alias keys='eval `keychain --eval --agents ssh,gpg ~/.keys/ssh/s33d_ed25519 62096432EE22D410FF04A7C7566EAD07A1A6FD88`'
 alias k='eval `keychain --eval --agents ssh,gpg ~/.keys/ssh/s33d_ed25519 62096432EE22D410FF04A7C7566EAD07A1A6FD88`'

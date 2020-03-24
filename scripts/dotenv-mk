@@ -1,0 +1,6 @@
+#!/usr/bin/bash
+
+CURRENT_PATH=$PWD
+cd ~/dotenvs
+touch "$1.env" || true
+ln -s "$HOME/dotenvs/$1.env" "$CURRENT_PATH/.env" || true

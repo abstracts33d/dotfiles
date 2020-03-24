@@ -1,0 +1,28 @@
+#!/usr/bin/bash
+# 
+# Usage : pacQuery -f '-Qqet' -g base,base-devel,plasma,xorg  = pacman -Qqet | grep pacman -Qqg base | ...
+
+function join_by { local d=$1; shift; echo -n "$1"; shift; printf "%s" "${@/#/$d}"; }
+
+while getopts "f: g:" opt; do
+    case $opt in
+        g) group="$OPTARG";;
+	    f) flags="$OPTARG";;
+    esac
+done
+
+IFS=", " read -r -a groups <<<  "$group"
+if [ -n "$flags" ]; then selector="${flags}"; else selector="-Qqet"; fi
+
+CMD=()
+CMD+=("pacman" $selector)
+
+for element in "${groups[@]}"
+do
+    CMD_prefix+=('| grep -v "$(pacman -Qqg')
+    CMD_suffix=($element)
+    CMD+=($CMD_prefix $CMD_suffix')"')
+done
+
+CMD+=( '| grep -v "$(pacman -Qqm)"')
+eval $(join_by " " "${CMD[@]}")

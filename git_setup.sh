@@ -1,3 +1,4 @@
+#!/usr/bin/env bash
 IFS=$'\n'
 
 while getopts "u:e:k:" opt; do

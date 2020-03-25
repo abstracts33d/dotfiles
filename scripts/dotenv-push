@@ -1,6 +1,0 @@
-#!/usr/bin/env bash
-
-cd "$HOME/dotenvs"
-git add .
-git commit -m "update envs"
-git push origin master

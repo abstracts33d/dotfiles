@@ -1,0 +1,18 @@
+#!/usr/bin/env bash
+CURRENT_PATH=$PWD
+FOLDER_NAME=${PWD##*/}
+
+while getopts "ngp" opt; do
+    case $opt in
+        n)  cd ~/dotenvs
+            touch "$FOLDER_NAME.env" || true
+            ln -s "$HOME/dotenvs/$FOLDER_NAME.env" "$CURRENT_PATH/.env" || true;;
+
+	    g)  ln -s "$HOME/dotenvs/$FOLDER_NAME.env" "$CURRENT_PATH/.env" || true;;
+        
+        p)  cd "$HOME/dotenvs"
+            git add .
+            git commit -m "update envs"
+            git push origin master;;
+    esac
+done

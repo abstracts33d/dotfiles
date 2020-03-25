@@ -57,3 +57,5 @@
 	email = abstract.s33d@gmail.com
 	name = Manuel Wegria
 	signingkey = 566EAD07A1A6FD88
+[init]
+	templatedir = /home/seed/.git-templates

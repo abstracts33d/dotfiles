@@ -36,6 +36,11 @@ for name in *; do
       backup $target
       symlink "$PWD/$name" "$target"
     fi
+    if [[ "$name" == 'git-templates' ]]; then
+      target="$HOME/.$name"
+      backup $target
+      symlink "$PWD/$name" "$target"
+    fi
   fi
 done
 

@@ -1,8 +1,8 @@
 # ZSH CONFIGS FILE ORDER AND CONDITIONS
-# .zshenv 
-# →[.zprofile if login] 
-# → [.zshrc if interactive] 
-# → [.zlogin if login] 
+# .zshenv
+# →[.zprofile if login]
+# → [.zshrc if interactive]
+# → [.zlogin if login]
 # → [.zlogout sometimes]
 
 # CHECK IF ON DESKTOP OR SERVER

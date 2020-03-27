@@ -1,6 +1,10 @@
 ## Toolset
 
-- [oh-my-zsh](http://ohmyz.sh/)
+- [ZSH](https://en.wikipedia.org/wiki/Z_shell)
+- [oh-my-zsh](http://ohmyz.sh/) with [P9K](https://github.com/Powerlevel9k/powerlevel9k) && [P10K](https://github.com/romkatv/powerlevel10k)
 - [git](https://git-scm.com/)
-- Ruby via [`rbenv`](https://github.com/rbenv/rbenv)
-- [nvm]
+- [Node](https://nodejs.org/en/) via [`nvm`](https://github.com/nvm-sh/nvm)
+- [Ruby](https://www.ruby-lang.org/en/) via [`rbenv`](https://github.com/rbenv/rbenv)
+
+### Optional (but recommended)
+- [tmux](https://github.com/tmux/tmux/wiki)

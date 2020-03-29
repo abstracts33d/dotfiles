@@ -1,0 +1,12 @@
+rake
+bundler
+rspec
+rubocop
+rubocop-performance
+pry
+pry-byebug
+pr--rails
+pry-remote
+hub
+colored
+octokit

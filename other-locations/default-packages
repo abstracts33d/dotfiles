@@ -1,0 +1,22 @@
+# $NVM_DIR/default-packages
+yarn
+pm2
+nodemon
+travis-cli
+snyk
+eslint
+prettier
+# cypress
+# webpack-dev-server
+create-react-app
+# react-native-cli
+@vue/cli
+@vue/cli-init
+@vue/cli-service
+# expo-cli
+git-stats
+# purgecss
+# gatsby-cli
+# create-nuxt-app
+# @nestjs/cli
+

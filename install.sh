@@ -19,27 +19,63 @@ symlink() {
   fi
 }
 
+create_dir_if_not_present(){
+  dir=$1
+  if [ ! -d "$dir" ]; then
+    echo "☠☠☠ Creating $dir"
+    mkdir -p "$dir"
+  fi
+}
+
+echo "☠☠☠ SYMLINKING CONFIGS TO $HOME"
 for name in *; do
   if [ ! -d "$name" ]; then
     target="$HOME/.$name"
-    if [[ ! "$name" =~ '\.sh$' ]] && [ "$name" != 'README.md' ] && [[ ! "$name" =~ '\.sublime-settings$' ]]; then
+    
+    if [[ ! "${name: -3}" == ".sh" ]] && [ "$name" != 'README.md' ]; then
       backup $target
       symlink "$PWD/$name" "$target"
     fi
   else
     if [[ "$name" == 'scripts' ]]; then
+      echo "☠☠☠ SYMLINKING SCRIPTS TO $HOME/bin/$name"
+      create_dir_if_not_present "$HOME/bin"
       target="$HOME/bin/$name"
-      if [ ! -d "$HOME/bin" ]; then
-        echo "☠☠☠ Creating $HOME/bin"
-        mkdir -p "$HOME/bin"
-      fi
       backup $target
       symlink "$PWD/$name" "$target"
     fi
     if [[ "$name" == 'git-templates' ]]; then
+      echo "☠☠☠ SYMLINKING GIT-TEMPLATES TO $HOME/.$name"
       target="$HOME/.$name"
       backup $target
       symlink "$PWD/$name" "$target"
+    fi
+    if [[ "$name" == 'other-locations' ]]; then
+      echo "☠☠☠ SYMLINKING TO OTHER-LOCATIONS"
+      cd $name
+      for other_location_name in *; do
+        if [[ "$other_location_name" == 'default-packages' ]]; then
+          if [ -z "$NVM_DIR" ]; then
+            create_dir_if_not_present "$HOME/.nvm"
+            target="$HOME/.nvm/$other_location_name"
+          else
+            target="$NVM_DIR/$other_location_name"
+          fi
+          backup $target
+          symlink "$PWD/$other_location_name" "$target"
+        fi
+        if [[ "$other_location_name" == 'default-gems' ]]; then
+          if [ -z "$(rbenv root)" ]; then
+            create_dir_if_not_present "$HOME/.rbenv"
+            target="$HOME/.rbenv/$other_location_name"
+          else
+            target="$(rbenv root)/$other_location_name"
+          fi
+          backup $target
+          symlink "$PWD/$other_location_name" "$target"
+        fi
+      done
+      cd ..
     fi
   fi
 done

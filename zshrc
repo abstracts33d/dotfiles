@@ -93,7 +93,8 @@ echo ' ☠ Loading Aliases'
 [[ -f "$HOME/.aliases" ]] && source "$HOME/.aliases"
 
 # SOURCE FUNCTIONS
-[[ -f "$HOME/.bashfunctions" ]] && source "$HOME/.bashfunctions"
+echo ' ☠ Loading Functions'
+[[ -f "$HOME/.bash_functions" ]] && source "$HOME/.bash_functions"
 [[ -f "$HOME/.zfunctions" ]] && source "$HOME/.zfunctions"
 
 # POWERLEVEL9K/POWERLEVEL10K

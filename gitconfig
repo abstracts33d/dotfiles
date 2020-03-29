@@ -58,4 +58,4 @@
 	name = Manuel Wegria
 	signingkey = 566EAD07A1A6FD88
 [init]
-	templatedir = /home/seed/.git-templates
+	templatedir = ~/.git-templates

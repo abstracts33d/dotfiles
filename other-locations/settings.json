@@ -1,0 +1,57 @@
+{
+  "editor.tabSize": 2,
+  "editor.fontSize": 15,
+  "editor.multiCursorModifier": "ctrlCmd",
+  "diffEditor.ignoreTrimWhitespace": false,
+  "explorer.confirmDragAndDrop": false,
+  "eslint.run": "onSave",
+  "eslint.enable": true,
+  "eslint.lintTask.enable": true,
+  "explorer.confirmDelete": false,
+  "javascript.updateImportsOnFileMove.enabled": "always",
+  "javascript.preferences.quoteStyle": "single",
+  "scm.alwaysShowActions": true,
+  "scm.alwaysShowProviders": true,
+  "git.confirmSync": false,
+  "git.suggestSmartCommit": false,
+  "typescript.preferences.quoteStyle": "single",
+  "[javascript]": {
+      "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+  "[javascriptreact]": {
+      "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+  "[json]": {
+      "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+  "[jsonc]": {
+      "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+  "[vue]": {
+      "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+  "[html]": {
+      "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+  "files.associations": {
+      "*.js": "javascript",
+      "*.es2015": "javascript",
+      "*.es2016": "javascript",
+      ".env": "properties",
+      ".env.prod": "properties",
+      ".env.docker": "properties",
+      ".env.prod.docker": "properties",
+      "bash_functions": "shellscript",
+      "zfunctions": "shellscript",
+      "zlogin": "shellscript",
+      "zprofile": "shellscript",
+      "zshrc": "shellscript",
+      "zshenv": "shellscript",
+      "zserver": "shellscript",
+  },
+  "workbench.colorTheme": "One Monokai",
+  "workbench.iconTheme": "material-icon-theme",
+  "[shellscript]": {
+      "editor.defaultFormatter": "shakram02.bash-beautify"
+  }
+}

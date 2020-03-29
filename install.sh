@@ -74,6 +74,12 @@ for name in *; do
           backup $target
           symlink "$PWD/$other_location_name" "$target"
         fi
+        if [[ "$other_location_name" == 'settings.json' ]]; then
+            create_dir_if_not_present "$HOME/.config/Code - OSS/User" # need double quotes to escape spaces correctly
+            target="$HOME/.config/Code - OSS/User/$other_location_name"
+            backup "$target" # need double quotes to escape spaces correctly
+            symlink "$PWD/$other_location_name" "$target"
+        fi
       done
       cd ..
     fi

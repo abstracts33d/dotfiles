@@ -92,6 +92,10 @@ fi
 echo ' ☠ Loading Aliases'
 [[ -f "$HOME/.aliases" ]] && source "$HOME/.aliases"
 
+# SOURCE FUNCTIONS
+[[ -f "$HOME/.bashfunctions" ]] && source "$HOME/.bashfunctions"
+[[ -f "$HOME/.zfunctions" ]] && source "$HOME/.zfunctions"
+
 # POWERLEVEL9K/POWERLEVEL10K
 # 9k config must be sourced before initialization
 if [[ $ZSH_POWERLEVEL_VERSION == 9 ]]; then

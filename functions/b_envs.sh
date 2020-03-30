@@ -20,7 +20,7 @@ envs() {
     
     case $ENV_ACTION in
         new)
-            echo "ENVS: creating new envs"
+            echo "☠ ENVS: creating new envs"
             case $ENV_TARGET in
                 e)    ENV_SELECTED_TYPES=("");;
                 ep)  ENV_SELECTED_TYPES=("" ".prod");;
@@ -45,7 +45,7 @@ envs() {
         ;;
         
         get)
-            echo "ENVS: importing envs"
+            echo "☠ ENVS: importing envs"
             for TYPE in "${ENV_TYPES[@]}"; do
                 origin="$HOME/dotenvs/$ENV_FOLDER_NAME.env$TYPE"
                 target="$ENV_CURRENT_PATH/.env$TYPE"
@@ -62,7 +62,7 @@ envs() {
         ;;
         
         push)
-            echo "ENVS: pushing envs"
+            echo "☠ ENVS: pushing envs"
             cd "$HOME/dotenvs"
             git add .
             git commit -m "update envs"
@@ -70,13 +70,13 @@ envs() {
         ;;
         
         reload)
-            echo "ENVS: reloading envs"
+            echo "☠ ENVS: reloading envs"
             cd ..;
             cd $ENV_CURRENT_PATH
         ;;
         
         switch)
-            echo "ENVS: switching to $ENV_TARGET ENV"
+            echo "☠ ENVS: switching to $ENV_TARGET ENV"
             case $ENV_TARGET in
                 env)         export ZSH_DOTENV_FILE=.env;;
                 docker)      export ZSH_DOTENV_FILE=.env.docker;;

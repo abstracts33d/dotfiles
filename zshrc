@@ -58,6 +58,7 @@ else
         history-substring-search
         git
         gitfast
+        dotenv
     )
 fi
 

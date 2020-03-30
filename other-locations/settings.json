@@ -49,8 +49,8 @@
     "zshenv": "shellscript",
     "zserver": "shellscript"
   },
-  "workbench.colorTheme": "One Monokai",
-  "workbench.iconTheme": "material-icon-theme",
+  "workbench.colorTheme": "Bear Theme",
+  "workbench.iconTheme": "helium-icon-theme",
   "[shellscript]": {
     "editor.defaultFormatter": "shakram02.bash-beautify"
   }

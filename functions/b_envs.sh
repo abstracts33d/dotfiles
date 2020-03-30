@@ -5,7 +5,7 @@ function envs() {
     ENV_TYPES=("" ".prod" ".docker" ".prod.docker")
     ENV_SELECTED_TYPES=()
     
-    local opt n g p r s h
+    local OPTIND opt n g p r s h
     
     while getopts "n:gprs:h" opt; do
         case $opt in

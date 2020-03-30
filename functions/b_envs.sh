@@ -28,8 +28,18 @@ envs() {
             esac
             cd ~/dotenvs
             for TYPE in "${ENV_SELECTED_TYPES[@]}"; do
-                cp "./template/.env$TYPE" "$ENV_FOLDER_NAME.env$TYPE" || true
-                ln -s "$HOME/dotenvs/$ENV_FOLDER_NAME.env$TYPE" "$ENV_CURRENT_PATH/.env$TYPE" || true
+                origin="./template/.env$TYPE"
+                target="$ENV_FOLDER_NAME.env$TYPE"
+                if [ -f "$origin" ]; then                  # Does the origin file exist?
+                    if [ ! -e "$target" ]; then            # Does the target file do not exist?
+                        cp "$origin" "$target" || true
+                        ln -s "$HOME/dotenvs/$ENV_FOLDER_NAME.env$TYPE" "$ENV_CURRENT_PATH/.env$TYPE" || true
+                    else
+                        echo "envs files already exists do envs -g to get them in your project directory"
+                    fi
+                else
+                    echo "missing templates envs you might have messed up with the dotenvs repo"
+                fi
             done
             cd $ENV_CURRENT_PATH
         ;;
@@ -37,8 +47,16 @@ envs() {
         get)
             echo "ENVS: importing envs"
             for TYPE in "${ENV_TYPES[@]}"; do
-                if [ -f "$HOME/dotenvs/$ENV_FOLDER_NAME.env$TYPE" ]; then
-                    ln -s "$HOME/dotenvs/$ENV_FOLDER_NAME.env$TYPE" "$ENV_CURRENT_PATH/.env$TYPE" || true
+                origin="$HOME/dotenvs/$ENV_FOLDER_NAME.env$TYPE"
+                target="$ENV_CURRENT_PATH/.env$TYPE"
+                if [ -f "$origin" ]; then                  # Does the origin file exist?
+                    if [ ! -e "$target" ]; then            # Does the target file do not exist?
+                        ln -s "$origin" "$target" || true
+                    else
+                        echo "envs files have already been linked in your project directory"
+                    fi
+                else
+                    echo "no envs files found for this project do envs -n <options>"
                 fi
             done
         ;;

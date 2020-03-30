@@ -7,6 +7,31 @@ function envs() {
     
     local OPTIND opt n g p r s h
     
+    function reload_env() {
+        to_source="$ENV_CURRENT_PATH/$ZSH_DOTENV_FILE"
+        case $(readlink /proc/$$/exe) in
+            /usr/bin/zsh)
+                echo "> SHELL is ZSH"
+                if [[ " ${plugins[@]} " =~ " dotenv " ]]; then
+                    echo "> plugins contains dotenv"
+                    cd ..;
+                    cd "$ENV_CURRENT_PATH"
+                else
+                    echo "> plugins do not contains dotenv  => HARD SOURCING of file"
+                    if [ -f "$to_source" ]; then
+                        source "$to_source"
+                    fi
+                fi
+            ;;
+            *)
+                echo "> SHELL is not ZSH => HARD SOURCING of file"
+                if [ -f "$to_source" ]; then
+                    source "$to_source"
+                fi
+            ;;
+        esac
+    }
+    
     while getopts "n:gprs:h" opt; do
         case $opt in
             n)  ENV_ACTION=new
@@ -24,7 +49,7 @@ function envs() {
             h)  ENV_ACTION=help
         esac
     done
-
+    
     case $ENV_ACTION in
         new)
             echo "☠ ENVS: creating new envs"
@@ -79,8 +104,7 @@ function envs() {
         
         reload)
             echo "☠ ENVS: reloading envs"
-            cd ..;
-            cd "$ENV_CURRENT_PATH"
+            reload_env
         ;;
         
         switch)
@@ -91,8 +115,7 @@ function envs() {
                 prod)        export ZSH_DOTENV_FILE=.env.prod;;
                 prod.docker) export ZSH_DOTENV_FILE=.env.prod.docker;;
             esac
-            cd ..
-            cd "$ENV_CURRENT_PATH";
+            reload_env
         ;;
         
         help)

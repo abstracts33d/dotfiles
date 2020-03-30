@@ -1,9 +1,11 @@
-envs() {
+function envs() {
     ENV_CURRENT_PATH=$PWD
     ENV_FOLDER_NAME=${PWD##*/}
     ENV_ACTION=
     ENV_TYPES=("" ".prod" ".docker" ".prod.docker")
     ENV_SELECTED_TYPES=()
+    
+    local opt n g p r s h
     
     while getopts "n:gprs:h" opt; do
         case $opt in
@@ -22,7 +24,7 @@ envs() {
             h)  ENV_ACTION=help
         esac
     done
-    
+
     case $ENV_ACTION in
         new)
             echo "☠ ENVS: creating new envs"
@@ -90,7 +92,7 @@ envs() {
                 prod.docker) export ZSH_DOTENV_FILE=.env.prod.docker;;
             esac
             cd ..
-            cd $ENV_CURRENT_PATH
+            cd "$ENV_CURRENT_PATH";
         ;;
         
         help)

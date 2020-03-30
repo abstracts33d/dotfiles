@@ -8,12 +8,17 @@ envs() {
     while getopts "n:gprs:h" opt; do
         case $opt in
             n)  ENV_ACTION=new
-            ENV_TARGET=$OPTARG;;
-            g)  ENV_ACTION=get;;
-            p)  ENV_ACTION=push;;
-            r)  ENV_ACTION=reload;;
+                ENV_TARGET=$OPTARG
+            ;;
+            g)  ENV_ACTION=get
+            ;;
+            p)  ENV_ACTION=push
+            ;;
+            r)  ENV_ACTION=reload
+            ;;
             s)  ENV_ACTION=switch
-            ENV_TARGET=$OPTARG;;
+                ENV_TARGET=$OPTARG
+            ;;
             h)  ENV_ACTION=help
         esac
     done
@@ -41,7 +46,7 @@ envs() {
                     echo "missing templates envs you might have messed up with the dotenvs repo"
                 fi
             done
-            cd $ENV_CURRENT_PATH
+            cd "$ENV_CURRENT_PATH"
         ;;
         
         get)
@@ -67,12 +72,13 @@ envs() {
             git add .
             git commit -m "update envs"
             git push origin master
+            cd "$ENV_CURRENT_PATH"
         ;;
         
         reload)
             echo "☠ ENVS: reloading envs"
             cd ..;
-            cd $ENV_CURRENT_PATH
+            cd "$ENV_CURRENT_PATH"
         ;;
         
         switch)

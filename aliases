@@ -1,32 +1,33 @@
 # ALIASES
-alias m=make
+# COMMON
 alias la='ls -la'
 alias hist='cat ~/.zsh_history'
 alias timestamp='date +"%Y-%m-%d_%H-%M-%S"'
 alias compact_timestamp='date "+%Y%m%d%H%M%S"'
 
-alias initDockerMakefile="export D_MK_INSTALL_TYPE=install; curl -H 'Cache-Control: no-cache' https://raw.githubusercontent.com/theabstractconnection/docker-compose_makefile/master/install.sh | bash"
-alias updateDockerMakefile="export D_MK_INSTALL_TYPE=update; curl -H 'Cache-Control: no-cache' https://raw.githubusercontent.com/theabstractconnection/docker-compose_makefile/master/install.sh | bash"
+# MAKE 
+alias m=make
+alias iDM="export D_MK_INSTALL_TYPE=install; curl -H 'Cache-Control: no-cache' https://raw.githubusercontent.com/theabstractconnection/docker-compose_makefile/master/install.sh | bash"
+alias uDM="export D_MK_INSTALL_TYPE=update; curl -H 'Cache-Control: no-cache' https://raw.githubusercontent.com/theabstractconnection/docker-compose_makefile/master/install.sh | bash"
 
+# VPN
 alias startvpn='sudo openvpn --config ~/.keys/openvpn/client.ovpn --mute-replay-warnings'
 
-alias keys='eval `keychain --eval --agents ssh,gpg ~/.keys/ssh/s33d_ed25519 62096432EE22D410FF04A7C7566EAD07A1A6FD88`'
+# SSH/GPG
 alias k='eval `keychain --eval --agents ssh,gpg ~/.keys/ssh/s33d_ed25519 62096432EE22D410FF04A7C7566EAD07A1A6FD88`'
+alias keys='eval `keychain --eval --agents ssh,gpg ~/.keys/ssh/s33d_ed25519 62096432EE22D410FF04A7C7566EAD07A1A6FD88`'
 
-# Get External IP / local IPs
+# GET EXTERNAL/LOCAL IP
 alias ip="curl ipinfo.io/ip"
 alias ips="ifconfig -a | perl -nle'/(\d+\.\d+\.\d+\.\d+)/ && print $1'"
 alias speedtest="wget -O /dev/null http://speedtest.wdc01.softlayer.com/downloads/test10.zip"
 
-# Quickly serve the current directory as HTTP
+# SERVE THE CURRENT DIR
 alias rserve='ruby -run -e httpd . -p 8000'
 alias pserve='python3 -m http.server 8000'
 alias nserve='http-server -p 8000'
 
-# FUNCTIONS
-grep_hist() {hist|grep $1}
-
-# docker-compose
+# DOKCER COMPOSE
 alias c='docker-compose'
 alias cb='docker-compose build'
 alias cup='docker-compose up'
@@ -40,5 +41,23 @@ alias crwt='docker-compose run --rm watchtest'
 alias cps='docker-compose ps'
 alias clogs='docker-compose logs'
 
+# NPM
+alias ni='npm install'
+alias nid='npm install --save-dev'
+alias nig='npm install --global'
+alias nt='npm test'
+alias nit='npm install && npm test'
+alias nk='npm link'
+alias nr='npm run'
+alias ns='npm start'
+alias nf='npm cache clean && rm -rf node_modules && npm install'
+alias nlg='npm list --global --depth=0'
+
+# GIT
 alias gst_all="find . -maxdepth 1 -mindepth 1 -type d -exec sh -c '(echo {} && cd {} && git status -s && echo)' \;"
+
+# OTHER
 alias count_dirs="ls -l .vim | grep -c ^d"
+
+# FUNCTIONS
+grep_hist() {hist|grep $1}

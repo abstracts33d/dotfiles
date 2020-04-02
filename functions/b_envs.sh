@@ -9,27 +9,10 @@ function envs() {
     
     function reload_env() {
         to_source="$ENV_CURRENT_PATH/$ZSH_DOTENV_FILE"
-        case $(readlink /proc/$$/exe) in
-            /usr/bin/zsh)
-                echo "> SHELL is ZSH"
-                if [[ " ${plugins[@]} " =~ " dotenv " ]]; then
-                    echo "> plugins contains dotenv"
-                    cd ..;
-                    cd "$ENV_CURRENT_PATH"
-                else
-                    echo "> plugins do not contains dotenv  => HARD SOURCING of file"
-                    if [ -f "$to_source" ]; then
-                        source "$to_source"
-                    fi
-                fi
-            ;;
-            *)
-                echo "> SHELL is not ZSH => HARD SOURCING of file"
-                if [ -f "$to_source" ]; then
-                    source "$to_source"
-                fi
-            ;;
-        esac
+        echo "> SHELL is not ZSH => HARD SOURCING of file"
+        if [ -f "$to_source" ]; then
+            source "$to_source"
+        fi
     }
     
     while getopts "n:gprs:h" opt; do

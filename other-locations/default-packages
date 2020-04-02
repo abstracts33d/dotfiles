@@ -1,11 +1,22 @@
 # $NVM_DIR/default-packages
 
-# TOOLS
-yarn
+# RUNNERS
 pm2
 nodemon
 concurrently
 npm-run-all
+
+# NPM RELATED
+yarn
+np
+
+# DEBUGING
+ndb
+
+#GENERAL UTILITIES
+tldr
+spoof
+fkill
 
 # CLIS
 travis-cli
@@ -17,18 +28,10 @@ prettier
 prettier-eslint
 prettier-eslint-cli
 
-# TESTS
-# cypress
-
-# BABEL/WEBPACK
-@babel/core
-@babel/cli
-webpack
-webpack-dev-server
-
 # FRONTEND
 create-react-app
+create-react-library
 @vue/cli
 
-# OTHER
+# GIT RELATED
 git-stats

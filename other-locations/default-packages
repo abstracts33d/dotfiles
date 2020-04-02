@@ -1,22 +1,34 @@
 # $NVM_DIR/default-packages
+
+# TOOLS
 yarn
 pm2
 nodemon
+concurrently
+npm-run-all
+
+# CLIS
 travis-cli
 snyk
+
+# LINT
 eslint
 prettier
-# cypress
-# webpack-dev-server
-create-react-app
-# react-native-cli
-@vue/cli
-@vue/cli-init
-@vue/cli-service
-# expo-cli
-git-stats
-# purgecss
-# gatsby-cli
-# create-nuxt-app
-# @nestjs/cli
+prettier-eslint
+prettier-eslint-cli
 
+# TESTS
+# cypress
+
+# BABEL/WEBPACK
+@babel/core
+@babel/cli
+webpack
+webpack-dev-server
+
+# FRONTEND
+create-react-app
+@vue/cli
+
+# OTHER
+git-stats

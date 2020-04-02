@@ -9,7 +9,7 @@ function envs() {
     
     function reload_env() {
         to_source="$ENV_CURRENT_PATH/$ZSH_DOTENV_FILE"
-        echo "> SHELL is not ZSH => HARD SOURCING of file"
+        echo "> Sourcing env file"
         if [ -f "$to_source" ]; then
             source "$to_source"
         fi

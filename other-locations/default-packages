@@ -13,10 +13,13 @@ np
 # DEBUGING
 ndb
 
-#GENERAL UTILITIES
+# GENERAL UTILITIES
 tldr
 spoof
-fkill
+fkill-cli
+
+# DEPLOYMENT
+now
 
 # CLIS
 travis-cli

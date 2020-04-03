@@ -25,12 +25,6 @@ now
 travis-cli
 snyk
 
-# LINT
-eslint
-prettier
-prettier-eslint
-prettier-eslint-cli
-
 # FRONTEND
 create-react-app
 create-react-library

@@ -2,13 +2,16 @@
 # COMMON
 alias la='ls -la'
 alias hist='cat ~/.zsh_history'
-alias timestamp='date +"%Y-%m-%d_%H-%M-%S"'
-alias compact_timestamp='date "+%Y%m%d%H%M%S"'
+alias timestamp='date +'%Y-%m-%d_%H-%M-%S''
+alias compact_timestamp='date '+%Y%m%d%H%M%S''
 
-# MAKE 
+#GENARAL DEV
+alias econfig='cp ${HOME}/.editorconfig ./.editorconfig'
+
+# MAKE
 alias m=make
-alias iDM="export D_MK_INSTALL_TYPE=install; curl -H 'Cache-Control: no-cache' https://raw.githubusercontent.com/theabstractconnection/docker-compose_makefile/master/install.sh | bash"
-alias uDM="export D_MK_INSTALL_TYPE=update; curl -H 'Cache-Control: no-cache' https://raw.githubusercontent.com/theabstractconnection/docker-compose_makefile/master/install.sh | bash"
+alias iDM='export D_MK_INSTALL_TYPE=install; curl -H 'Cache-Control: no-cache' https://raw.githubusercontent.com/theabstractconnection/docker-compose_makefile/master/install.sh | bash'
+alias uDM='export D_MK_INSTALL_TYPE=update; curl -H 'Cache-Control: no-cache' https://raw.githubusercontent.com/theabstractconnection/docker-compose_makefile/master/install.sh | bash'
 
 # VPN
 alias startvpn='sudo openvpn --config ~/.keys/openvpn/client.ovpn --mute-replay-warnings'
@@ -18,9 +21,9 @@ alias k='eval `keychain --eval --agents ssh,gpg ~/.keys/ssh/s33d_ed25519 6209643
 alias keys='eval `keychain --eval --agents ssh,gpg ~/.keys/ssh/s33d_ed25519 62096432EE22D410FF04A7C7566EAD07A1A6FD88`'
 
 # GET EXTERNAL/LOCAL IP
-alias ip="curl ipinfo.io/ip"
-alias ips="ifconfig -a | perl -nle'/(\d+\.\d+\.\d+\.\d+)/ && print $1'"
-alias speedtest="wget -O /dev/null http://speedtest.wdc01.softlayer.com/downloads/test10.zip"
+alias ip='curl ipinfo.io/ip'
+alias ips='ifconfig -a | perl -nle'/(\d+\.\d+\.\d+\.\d+)/ && print $1''
+alias speedtest='wget -O /dev/null http://speedtest.wdc01.softlayer.com/downloads/test10.zip'
 
 # SERVE THE CURRENT DIR
 alias rserve='ruby -run -e httpd . -p 8000'
@@ -54,10 +57,10 @@ alias nf='npm cache clean && rm -rf node_modules && npm install'
 alias nlg='npm list --global --depth=0'
 
 # GIT
-alias gst_all="find . -maxdepth 1 -mindepth 1 -type d -exec sh -c '(echo {} && cd {} && git status -s && echo)' \;"
+alias gst_all='find . -maxdepth 1 -mindepth 1 -type d -exec sh -c '(echo {} && cd {} && git status -s && echo)' \;'
 
 # OTHER
-alias count_dirs="ls -l .vim | grep -c ^d"
+alias count_dirs='ls -l .vim | grep -c ^d'
 
 # FUNCTIONS
 grep_hist() {hist|grep $1}

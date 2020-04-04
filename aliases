@@ -5,7 +5,7 @@ alias hist='cat ~/.zsh_history'
 alias timestamp='date +'%Y-%m-%d_%H-%M-%S''
 alias compact_timestamp='date '+%Y%m%d%H%M%S''
 
-#GENARAL DEV
+# GENERAL DEV
 alias econfig='cp ${HOME}/.editorconfig ./.editorconfig'
 
 # MAKE

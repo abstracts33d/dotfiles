@@ -6,7 +6,9 @@ alias timestamp='date +'%Y-%m-%d_%H-%M-%S''
 alias compact_timestamp='date '+%Y%m%d%H%M%S''
 
 # GENERAL DEV
-alias econfig='cp ${HOME}/.editorconfig ./.editorconfig'
+alias e-config='cp ${HOME}/.editorconfig ./.editorconfig'
+alias p-config='cp ${HOME}/.prettierrc ./.prettierrc'
+alias l-config='cp ${HOME}/.eslintrc ./.eslintrc'
 
 # MAKE
 alias m=make

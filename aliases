@@ -8,7 +8,7 @@ alias compact_timestamp='date '+%Y%m%d%H%M%S''
 # GENERAL DEV
 alias e-config='cp ${HOME}/.editorconfig ./.editorconfig'
 alias p-config='cp ${HOME}/.prettierrc ./.prettierrc'
-alias l-config="echo '{ \"extends\": [\"@theabstractconnection/eslint-config/react\"] }' > .eslintrc"
+alias l-config="echo '{ \"extends\": [\"@theabstractconnection/eslint-config\"] }' > .eslintrc"
 
 # MAKE
 alias m=make

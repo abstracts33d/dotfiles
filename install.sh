@@ -54,12 +54,22 @@ for name in *; do
             echo "☠☠☠ SYMLINKING TO OTHER-LOCATIONS"
             cd $name
             for other_location_name in *; do
-                if [[ "$other_location_name" == 'default-packages' ]]; then
+                if [[ "$other_location_name" == 'node-default-packages' ]]; then
                     if [ -z "$NVM_DIR" ]; then
                         create_dir_if_not_present "$HOME/.nvm"
-                        target="$HOME/.nvm/$other_location_name"
+                        target="$HOME/.nvm/default-packages"
                     else
-                        target="$NVM_DIR/$other_location_name"
+                        target="$NVM_DIR/default-packages"
+                    fi
+                    backup $target
+                    symlink "$PWD/$other_location_name" "$target"
+                fi
+                if [[ "$other_location_name" == 'python-default-packages' ]]; then
+                    if [ -z "$(pyenv root)" ]; then
+                        create_dir_if_not_present "$HOME/.pyenv"
+                        target="$HOME/.pyenv/default-packages"
+                    else
+                        target="$(pyenv root)/default-packages"
                     fi
                     backup $target
                     symlink "$PWD/$other_location_name" "$target"

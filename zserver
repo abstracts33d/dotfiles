@@ -1,30 +1,48 @@
 
+# PYENV
+printf " ☠ Loading PYENV: "
+if [ -s "$HOME/.pyenv/bin/pyenv" ]; then
+    export PYENV_ROOT="$HOME/.pyenv"
+    export PATH="$PYENV_ROOT/bin:$PATH"
+    eval "$(pyenv init -)"
+    printf "%s\n" "✓"
+    printf " ☠ Loading PYENV-VIRTUALENV: "
+    if [ -s "$PYENV_ROOT/plugins/pyenv-virtualenv/bin/pyenv-virtualenv" ]; then
+        eval "$(pyenv virtualenv-init -)"
+        printf "%s\n" "✓"
+    else
+        printf "%s\n" "✖"
+    fi
+else
+    printf "%s\n" "✖"
+fi
+
 # RBENV
 printf " ☠ Loading RBENV: "
 if [ -s "$HOME/.rbenv/bin/rbenv" ]; then
-  export PATH="$HOME/.rbenv/bin:$PATH"
-  eval "$(rbenv init -)"
-  printf "%s\n" "✓"
-else 
-  printf "%s\n" "✖"
-fi 
+    export PATH="$HOME/.rbenv/bin:$PATH"
+    eval "$(rbenv init -)"
+    printf "%s\n" "✓"
+else
+    printf "%s\n" "✖"
+fi
 
 # NVM
 printf " ☠ Loading NVM: "
 if [ -s "$HOME/.nvm/nvm.sh" ]; then
-  export NVM_DIR="$HOME/.nvm"
-  \. "$NVM_DIR/nvm.sh" # This loads nvm
-  [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
-  printf "%s\n" "✓"
-else 
-  printf "%s\n" "✖"
+    export NVM_DIR="$HOME/.nvm"
+    \. "$NVM_DIR/nvm.sh" # This loads nvm
+    [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
+    printf "%s\n" "✓"
+else
+    printf "%s\n" "✖"
 fi
 
 # YARN
 printf " ☠ Loading YARN: "
 if [[ "$(where yarn)" == *"not found"* ]]; then
-  printf "%s\n" "✖"
+    printf "%s\n" "✖"
 else
-  export PATH="$(yarn global bin):$PATH"
-  printf "%s\n" "✓"
+    export PATH="$(yarn global bin):$PATH"
+    printf "%s\n" "✓"
 fi

@@ -40,6 +40,7 @@ if [[ $HOST_TYPE == personal ]] ; then
         git
         gitfast
         dotenv
+        pyenv
         ruby
         rbenv
         rails
@@ -89,6 +90,14 @@ if [[ $HOST_TYPE == personal ]] ; then
     load-nvmrc
 fi
 
+# INIT FZF
+[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+
+# ADD PLUGIN FORGOTTEN VARS
+export RBENV_ROOT=$(rbenv root)
+export PYENV_ROOT=$(pyenv root)
+export NVM_ROOT=$NVM_DIR
+
 # SOURCE ALIASES
 echo ' ☠ Loading Aliases'
 [[ -f "$HOME/.aliases" ]] && source "$HOME/.aliases"
@@ -114,3 +123,6 @@ if [[ $ZSH_POWERLEVEL_VERSION == 10 ]]; then
 fi
 
 
+# VI MODE
+bindkey -v
+export KEYTIMEOUT=1 # kill the lag

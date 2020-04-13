@@ -1,5 +1,9 @@
 # ALIASES
 # COMMON
+alias v='nvim'
+alias s="sudo"
+alias c='compress'
+alias x='extract'
 alias la='ls -la'
 alias hist='cat ~/.zsh_history'
 alias timestamp='date +'%Y-%m-%d_%H-%M-%S''
@@ -33,18 +37,18 @@ alias pserve='python3 -m http.server 8000'
 alias nserve='http-server -p 8000'
 
 # DOKCER COMPOSE
-alias c='docker-compose'
-alias cb='docker-compose build'
-alias cup='docker-compose up'
-alias cr='docker-compose run --service-ports --rm'
-alias crl='docker-compose run --service-ports --rm local'
-alias crd='docker-compose run --service-ports --rm develop'
-alias crt='docker-compose run --rm test'
-alias crp='docker-compose run --rm provision'
-alias crci='docker-compose run --rm ci'
-alias crwt='docker-compose run --rm watchtest'
-alias cps='docker-compose ps'
-alias clogs='docker-compose logs'
+alias dc='docker-compose'
+alias dcb='docker-compose build'
+alias dcup='docker-compose up'
+alias dcr='docker-compose run --service-ports --rm'
+alias dcrl='docker-compose run --service-ports --rm local'
+alias dcrd='docker-compose run --service-ports --rm develop'
+alias dcrt='docker-compose run --rm test'
+alias dcrp='docker-compose run --rm provision'
+alias dcrci='docker-compose run --rm ci'
+alias dcrwt='docker-compose run --rm watchtest'
+alias dcps='docker-compose ps'
+alias dclogs='docker-compose logs'
 
 # NPM
 alias ni='npm install'

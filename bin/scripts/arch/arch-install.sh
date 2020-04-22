@@ -241,6 +241,7 @@ function install_arch() {
     pacstrap /mnt \
     base base-devel linux linux-firmware pacman-contrib \
     grub os-prober intel-ucode efibootmgr \
+    netctl wpa-supplicant wifi-menu \
     lvm2 \
     zsh \
     git \

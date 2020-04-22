@@ -7,7 +7,6 @@ function install_packages() {
 function install_yay() {
     echo "Installing Yay"
     git clone https://aur.archlinux.org/yay.git
-    sudo chown -R $USER_NAME:$USER_NAME /yay
     cd yay
     makepkg -si
     cd ..

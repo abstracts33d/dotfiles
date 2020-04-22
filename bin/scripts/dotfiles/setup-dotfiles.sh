@@ -7,12 +7,12 @@ RED="\\033[1;31m"
 BLUE="\\034[1;31m"
 
 
-pushd $HOME/dotfiles  >>/dev/null 2>&1
-source tooling/setup-langs-versions-managers.sh
-source tooling/setup-fzf.sh
-source tooling/setup-oh-my-zsh.sh
+pushd $HOME/dotfiles/bin/scripts/dotfiles  >>/dev/null 2>&1
+source setup-langs-versions-managers.sh
+source setup-fzf.sh
+source setup-oh-my-zsh.sh
 source symlink-dotfiles.sh
 source setup-git.sh
-popd $HOME/dotfiles  >>/dev/null 2>&1
+popd >>/dev/null 2>&1
 
 echo  "${GREEN}👌  dotfiles setup complete"

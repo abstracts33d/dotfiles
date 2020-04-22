@@ -32,11 +32,12 @@ create-react-library
 git-stats
 git-stats-importer
 
-# TYPESCRIPT 
+# TYPESCRIPT
 typescript
 
 # VIM
 neovim
+eslint_d
 
 # LST LANGUAGE SERVERS
 bash-language-server
@@ -44,5 +45,5 @@ vscode-css-languageserver-bin
 vscode-html-languageserver-bin
 vscode-json-languageserver
 dockerfile-language-server-nodejs
-vls
 typescript-language-server
+vls

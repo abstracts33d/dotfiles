@@ -66,5 +66,7 @@
   "workbench.iconTheme": "helium-icon-theme",
   "editor.codeActionsOnSave": {
     "source.fixAll.eslint": true
-  }
+  },
+  "editor.fontFamily": "Hack",
+  "window.zoomLevel": -1
 }

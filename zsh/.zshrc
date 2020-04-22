@@ -1,9 +1,12 @@
 # ZSH CONFIGS FILE ORDER AND CONDITIONS
 # .zshenv
-# →[.zprofile if login]
+# → [.zprofile if login]
 # → [.zshrc if interactive]
 # → [.zlogin if login]
 # → [.zlogout sometimes]
+
+# LOAD KEY-BINDINGS
+source $ZDOTDIR/.zbindings
 
 # CHECK IF ON DESKTOP OR SERVER
 MY_HOSTS=("KracH")
@@ -72,10 +75,10 @@ if [[ $HOST_TYPE == personal ]] ; then
     load-nvmrc() {
         local node_version="$(nvm version)"
         local nvmrc_path="$(nvm_find_nvmrc)"
-        
+
         if [ -n "$nvmrc_path" ]; then
             local nvmrc_node_version=$(nvm version "$(cat "${nvmrc_path}")")
-            
+
             if [ "$nvmrc_node_version" = "N/A" ]; then
                 nvm install
                 elif [ "$nvmrc_node_version" != "$node_version" ]; then
@@ -104,8 +107,7 @@ echo ' ☠ Loading Aliases'
 
 # SOURCE FUNCTIONS
 echo ' ☠ Loading Functions'
-[[ -f "$HOME/.bash_functions" ]] && source "$HOME/.bash_functions"
-[[ -f "$HOME/.zfunctions" ]] && source "$HOME/.zfunctions"
+[[ -d "$HOME/bin/functions" ]] && for f in $HOME/bin/functions/*; do source $f; done
 
 # POWERLEVEL9K/POWERLEVEL10K
 # 9k config must be sourced before initialization
@@ -121,7 +123,6 @@ source $ZSH_CUSTOM/themes/powerlevel10k/powerlevel10k.zsh-theme
 if [[ $ZSH_POWERLEVEL_VERSION == 10 ]]; then
     [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
 fi
-
 
 # VI MODE
 bindkey -v

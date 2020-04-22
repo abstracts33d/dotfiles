@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-# Usage : pacQuery -f '-Qqet' -g base,base-devel,plasma,xorg  = pacman -Qqet | grep pacman -Qqg base | ...
+# Usage : pacq -f '-Qqet' -g base,base-devel,plasma,xorg  = pacman -Qqet | grep pacman -Qqg base | ...
 
 function join_by { local d=$1; shift; echo -n "$1"; shift; printf "%s" "${@/#/$d}"; }
 

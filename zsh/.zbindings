@@ -1,0 +1,28 @@
+# If tmux is running  and we re not inside a session
+# move last suspended process to tmux
+function ctrla() {
+    if [ "$( pgrep tmux )" != "" ] && [ -z "$TMUX" ] && (( $+commands[reptyr] )); then
+        kill -TSTP $$
+        bg >/dev/null 2>&1
+        disown $(jobs -l | awk '{print $NF}')
+        tmux new-window "$SHELL -c 'reptyr $!'"
+        exit
+    else
+        zle push-input
+    fi
+}
+
+zle -N ctrla
+bindkey '^A' ctrla
+
+# Make ^Z toggle between ^Z and fg
+function ctrlz() {
+if [[ $#BUFFER == 0 ]]; then
+    fg >/dev/null 2>&1 && zle redisplay
+else
+    zle push-input
+fi
+}
+
+zle -N ctrlz
+bindkey '^Z' ctrlz

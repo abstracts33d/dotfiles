@@ -5,8 +5,10 @@
 # → [.zlogin if login]
 # → [.zlogout sometimes]
 
-# LOAD KEY-BINDINGS
-source $ZDOTDIR/.zbindings
+# PROFZSH
+if [[ "$ZPROF" = true ]]; then
+    zmodload zsh/zprof
+fi
 
 # CHECK IF ON DESKTOP OR SERVER
 MY_HOSTS=("KracH")
@@ -25,48 +27,37 @@ else
     HOST_TYPE=server
     ZSH_POWERLEVEL_VERSION=9
     echo ' ☠ Loading .zserver'
-    source .zserver
+    source $ZDOTDIR/.zserver
 fi
 
-# LOAD OH-MY-ZSH
-echo ' ☠ Loading oh-my-zsh'
-export ZSH="/home/$USER/.oh-my-zsh"
-export ZSH_THEME="agnoster"
 
-if [[ $HOST_TYPE == personal ]] ; then
-    echo " ☠ Loading PERSONAL plugins"
-    plugins=(
-        common-aliases
-        zsh-syntax-highlighting
-        shrink-path
-        history-substring-search
-        git
-        gitfast
-        dotenv
-        pyenv
-        ruby
-        rbenv
-        rails
-        bundler
-        nvm
-        yarn
-        docker
-        archlinux
-    )
-else
-    echo " ☠ Loading SERVER plugins"
-    plugins=(
-        common-aliases
-        zsh-syntax-highlighting
-        shrink-path
-        history-substring-search
-        git
-        gitfast
-        dotenv
-    )
+# LOAD KEY-BINDINGS
+source $ZDOTDIR/.zbindings
+
+# POWERLEVEL9K/POWERLEVEL10K
+# 9k config must be sourced before initialization
+if [[ $ZSH_POWERLEVEL_VERSION == 9 ]]; then
+    [[ ! -f ~/.p9k.zsh ]] || source ~/.p9k.zsh
 fi
 
-source $ZSH/oh-my-zsh.sh
+# LOAD FZF
+[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+[ -f ~/.fzf-tab/fzf-tab.plugin.zsh ] && source ~/.fzf-tab/fzf-tab.plugin.zsh # here because need to be loaded before other plugins
+
+# LOAD ANTIGEN
+echo ' ☠ Loading Antigen'
+export ANTIGEN_PATH=$ZDOTDIR/antigen
+export ANTIGEN_COMPDUMPFILE=$ZDOTDIR/.zcompdump-KracH-5.8
+source $ANTIGEN_PATH/antigen.zsh
+typeset -a ANTIGEN_CHECK_FILES=($ZDOTDIR/.zshrc $ZDOTDIR/.antigenrc) # for bundle reloading
+antigen init $ZDOTDIR/.antigenrc
+
+
+# 10k config must be sourced before initialization
+# To customize prompt, run `p10k configure`
+if [[ $ZSH_POWERLEVEL_VERSION == 10 ]]; then
+    [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
+fi
 
 # ADD ZSH HOOK TO AUTOMATICALY SWITCH NODE VERSIONS WITH NVM
 if [[ $HOST_TYPE == personal ]] ; then
@@ -75,10 +66,10 @@ if [[ $HOST_TYPE == personal ]] ; then
     load-nvmrc() {
         local node_version="$(nvm version)"
         local nvmrc_path="$(nvm_find_nvmrc)"
-
+        
         if [ -n "$nvmrc_path" ]; then
             local nvmrc_node_version=$(nvm version "$(cat "${nvmrc_path}")")
-
+            
             if [ "$nvmrc_node_version" = "N/A" ]; then
                 nvm install
                 elif [ "$nvmrc_node_version" != "$node_version" ]; then
@@ -93,9 +84,6 @@ if [[ $HOST_TYPE == personal ]] ; then
     load-nvmrc
 fi
 
-# INIT FZF
-[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
-
 # ADD PLUGIN FORGOTTEN VARS
 export RBENV_ROOT=$(rbenv root)
 export PYENV_ROOT=$(pyenv root)
@@ -109,21 +97,11 @@ echo ' ☠ Loading Aliases'
 echo ' ☠ Loading Functions'
 [[ -d "$HOME/bin/functions" ]] && for f in $HOME/bin/functions/*; do source $f; done
 
-# POWERLEVEL9K/POWERLEVEL10K
-# 9k config must be sourced before initialization
-if [[ $ZSH_POWERLEVEL_VERSION == 9 ]]; then
-    [[ ! -f ~/.p9k.zsh ]] || source ~/.p9k.zsh
-fi
-
-# SOURCE POWERLEVEL10k (RETRO COMPATIBLE WITH 9K)
-source $ZSH_CUSTOM/themes/powerlevel10k/powerlevel10k.zsh-theme
-
-# 10k config must be sourced before initialization
-# To customize prompt, run `p10k configure`
-if [[ $ZSH_POWERLEVEL_VERSION == 10 ]]; then
-    [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
-fi
-
 # VI MODE
 bindkey -v
 export KEYTIMEOUT=1 # kill the lag
+
+# PROFZSH
+if [[ "$ZPROF" = true ]]; then
+    zprof
+fi

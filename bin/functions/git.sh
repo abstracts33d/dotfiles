@@ -1,4 +1,3 @@
-
 function ghUpdate() {
     if git remote | grep upstream > /dev/null; then
         echo "upstream is set"

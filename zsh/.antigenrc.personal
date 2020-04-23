@@ -1,0 +1,39 @@
+# Load oh-my-zsh library.
+antigen use oh-my-zsh
+
+# Load bundles from oh-my-zsh repo.
+antigen bundles <<EOBUNDLES
+    common-aliases
+    shrink-path
+    history-substring-search
+    git
+    gitfast
+    dotenv
+    pyenv
+    ruby
+    rbenv
+    rails
+    bundler
+    nvm
+    yarn
+    docker
+    archlinux
+EOBUNDLES
+
+# Load bundles from external repos.
+antigen bundles <<EOBUNDLES
+    zsh-users/zsh-completions
+    zsh-users/zsh-autosuggestions
+    zsh-users/zsh-syntax-highlighting
+EOBUNDLES
+
+# Load local bundles
+antigen bundles <<EOBUNDLES
+    $ZDOTDIR/plugins/thefuck
+EOBUNDLES
+
+# Select theme.
+antigen theme romkatv/powerlevel10k
+
+# Tell Antigen that you're done.
+antigen apply

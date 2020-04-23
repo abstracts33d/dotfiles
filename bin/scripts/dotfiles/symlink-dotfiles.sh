@@ -10,14 +10,6 @@ backup() {
     fi
 }
 
-# create_dir_if_not_present(){
-#     dir=$1
-#     if [ ! -d "$dir" ]; then
-#         echo "☠☠☠ Creating $dir"
-#         mkdir -p "$dir"
-#     fi
-# }
-
 symlink() {
     source_file=$1
     target=$2
@@ -27,9 +19,22 @@ symlink() {
     fi
 }
 
+
 destination="$HOME"
 
 pushd $HOME/dotfiles >>/dev/null 2>&1
+
+# Symlink antigenrc
+if [ ! -f "zsh/.antigenrc" ]; then
+    read -p "Is this machine a personal(0) or server(1) computer (default: 0) ?" HOST_TYPE
+    HOST_TYPE=${HOST_TYPE:-0}
+    if [[ $HOST_TYPE == "0" ]]; then
+        symlink "$PWD/zsh/.antigenrc.personal" "$PWD/zsh/.antigenrc"
+    else
+        symlink "$PWD/zsh/.antigenrc.server" "$PWD/zsh/.antigenrc"
+    fi
+fi
+
 for name in *; do
     target="$destination/.$name"
     if [ "$name" != 'README.md' ] && \
@@ -37,8 +42,8 @@ for name in *; do
     [ "$name" != 'bin' ]; then
         backup $target
         symlink "$PWD/$name" "$target"
-
-    elif [ "$name" == 'other-locations' ]; then
+        
+        elif [ "$name" == 'other-locations' ]; then
         pushd $name >>/dev/null 2>&1
         for subname in * .[^.]*; do
             if [ "$subname" != '*' ] ; then
@@ -47,8 +52,8 @@ for name in *; do
             fi
         done
         popd >>/dev/null 2>&1
-
-    elif [ "$name" == 'bin' ]; then
+        
+        elif [ "$name" == 'bin' ]; then
         target="$destination/$name"
         backup $target
         symlink "$PWD/$name" "$target"

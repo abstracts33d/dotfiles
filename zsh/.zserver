@@ -1,4 +1,3 @@
-
 # PYENV
 printf " ☠ Loading PYENV: "
 if [ -s "$HOME/.pyenv/bin/pyenv" ]; then

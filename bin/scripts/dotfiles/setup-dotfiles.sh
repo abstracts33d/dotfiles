@@ -8,6 +8,7 @@ BLUE="\\034[1;31m"
 
 
 pushd $HOME/dotfiles/bin/scripts/dotfiles  >>/dev/null 2>&1
+source setup-tmux.sh
 source setup-langs-versions-managers.sh
 source setup-fzf.sh
 source setup-oh-my-zsh.sh

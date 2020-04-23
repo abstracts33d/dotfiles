@@ -9,7 +9,11 @@ alias l='ls -l'
 alias la='ls -a'
 alias lla='ls -la'
 alias lt='ls --tree'
+
+alias tree='tree -aC -I .git --dirsfirst'
+
 alias hist='cat ~/.zsh_history'
+
 alias timestamp='date +'%Y-%m-%d_%H-%M-%S''
 alias compact_timestamp='date '+%Y%m%d%H%M%S''
 

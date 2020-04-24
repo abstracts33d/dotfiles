@@ -1,4 +1,4 @@
-#! /bin/bash
+#!/usr/bin/env bash
 
 function set_date_time() {
     echo "Setting date time"

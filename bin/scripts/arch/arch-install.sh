@@ -1,4 +1,4 @@
-#! /bin/bash
+#!/usr/bin/env bash
 
 function print_config() {
     echo "INSTALL_TARGET:      $INSTALL_TARGET"
@@ -255,9 +255,11 @@ function generate_fstab() {
 
 function copy_chroot_needed_files() {
     echo "Copying files in chroot environment"
+    cp -rfv arch-install.sh /mnt
     cp -rfv inside-chroot.sh /mnt
-    chmod a+x /mnt/inside-chroot.sh
     cp -rfv after-reboot.sh /mnt
+    chmod a+x /mnt/arch-install.sh
+    chmod a+x /mnt/inside-chroot.sh
     chmod a+x /mnt/after-reboot.sh
     cp -rfv arch-install.config /mnt
     cp -rfv packages.config /mnt

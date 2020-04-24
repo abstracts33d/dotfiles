@@ -1,3 +1,5 @@
+#!/usr/bin/env bash
+
 function install_packages() {
     echo "Installing packages"
     echo "${PACKAGE_LIST[@]}"

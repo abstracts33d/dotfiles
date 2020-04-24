@@ -10,6 +10,10 @@ get_latest_release() {
 NVM_VERSION=$(get_latest_release "nvm-sh/nvm")
 curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/$NVM_VERSION/install.sh | bash
 
+export NVM_DIR="$HOME/.nvm"
+\. "$NVM_DIR/nvm.sh"
+nvm install node # install node (for load-nvmrc)
+
 # PYENV
 PYENV_ROOT="$HOME/.pyenv"
 git clone https://github.com/pyenv/pyenv.git $PYENV_ROOT

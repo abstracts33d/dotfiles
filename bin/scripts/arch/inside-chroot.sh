@@ -82,6 +82,13 @@ function customize_pacman() {
     pacman -Syu --noconfirm --needed
 }
 
+function install_packages() {
+    echo "Installing packages"
+    echo "${PACKAGE_LIST[@]}"
+    sudo pacman -Syu --noconfirm --needed "${PACKAGE_LIST[@]}"
+}
+
+
 function install_yay() {
     echo "Installing Yay"
     git clone https://aur.archlinux.org/yay.git
@@ -89,12 +96,6 @@ function install_yay() {
     makepkg -si
     cd ..
     rm -rf yay
-}
-
-function install_packages() {
-    echo "Installing packages"
-    echo "${PACKAGE_LIST[@]}"
-    sudo pacman -Syu --noconfirm --needed "${PACKAGE_LIST[@]}"
 }
 
 function install_yay_packages() {
@@ -107,8 +108,11 @@ function package_configuration() {
     # REPTYR
     echo "Enabling REPTYR usage"
     sudo bash -c 'echo "kernel.yama.ptrace_scope=0" > /etc/sysctl.d/10-ptrace.conf'
-    echo "You will need to initialize databases systems etc..."
+    # DOCKER
+    echo "Adding ${USER_NAME} to docker group"
+    sudo usermod -aG docker $USER_NAME
     # TODO COMPLETE THIS SECTION WITH DATABASES ETC...
+    echo "You will need to initialize databases systems etc..."
 }
 
 function enable_services() {

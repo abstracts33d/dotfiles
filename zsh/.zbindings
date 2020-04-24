@@ -1,3 +1,43 @@
+# TTY sends different key codes. Translate them to regular.
+bindkey -s '^[[1~' '^[OH'  # home
+bindkey -s '^[[4~' '^[OF'  # end
+
+# Define dict for human readable keys
+typeset -A key
+key=(
+    BackSpace  "${terminfo[kbs]}"
+    Home       "${terminfo[khome]}"
+    End        "${terminfo[kend]}"
+    Insert     "${terminfo[kich1]}"
+    Delete     "${terminfo[kdch1]}"
+    Up         "${terminfo[kcuu1]}"
+    Down       "${terminfo[kcud1]}"
+    Left       "${terminfo[kcub1]}"
+    Right      "${terminfo[kcuf1]}"
+    PageUp     "${terminfo[kpp]}"
+    PageDown   "${terminfo[knp]}"
+)
+
+# Rebind common keys
+[[ -n ${key[BackSpace]} ]] && bindkey -M viins "${key[BackSpace]}"  backward-delete-char   # [BackSpace] - Backward delete char
+[[ -n ${key[Home]} ]]      && bindkey -M viins "${key[Home]}"       beginning-of-line      # [Home] - Go to beginning of line
+[[ -n ${key[End]} ]]       && bindkey -M viins "${key[End]}"        end-of-line            # [End] - Go to end of line
+[[ -n ${key[Insert]} ]]    && bindkey -M viins "${key[Insert]}"     overwrite-mode         # [Insert] - Insert mode
+[[ -n ${key[Delete]} ]]    && bindkey -M viins "${key[Delete]}"     delete-char            # [Delete] - Delete char
+[[ -n ${key[PageUp]} ]]    && bindkey -M viins "${key[PageUp]}"     beginning-of-history   # [PageUp]
+[[ -n ${key[PageDown]} ]]  && bindkey -M viins "${key[PageDown]}"   end-of-history         # [PageDown]
+
+[[ -n ${key[BackSpace]} ]] && bindkey -M vicmd "${key[BackSpace]}"  backward-delete-char   # [BackSpace] - Backward delete char
+[[ -n ${key[Home]} ]]      && bindkey -M vicmd "${key[Home]}"       beginning-of-line      # [Home] - Go to beginning of line
+[[ -n ${key[End]} ]]       && bindkey -M vicmd "${key[End]}"        end-of-line            # [End] - Go to end of line
+[[ -n ${key[Insert]} ]]    && bindkey -M vicmd "${key[Insert]}"     overwrite-mode         # [Insert] - Insert mode
+[[ -n ${key[Delete]} ]]    && bindkey -M vicmd "${key[Delete]}"     delete-char            # [Delete] - Delete char
+[[ -n ${key[PageUp]} ]]    && bindkey -M viins "${key[PageUp]}"     beginning-of-history   # [PageUp]
+[[ -n ${key[PageDown]} ]]  && bindkey -M viins "${key[PageDown]}"   end-of-history         # [PageDown]
+
+# rebind backspace in normal mode
+bindkey -a "^?" backward-delete-char
+
 # If tmux is running  and we re not inside a session
 # move last suspended process to tmux
 function ctrla() {
@@ -26,14 +66,3 @@ function ctrlz() {
 
 zle -N ctrlz
 bindkey '^Z' ctrlz
-
-# TTY sends different key codes. Translate them to regular.
-bindkey -s '^[[1~' '^[[H'  # home
-bindkey -s '^[[4~' '^[[F'  # end
-
-if [[ "${terminfo[khome]}" != "" ]]; then
-  bindkey "${terminfo[khome]}" beginning-of-line      # [Home] - Go to beginning of line
-fi
-if [[ "${terminfo[kend]}" != "" ]]; then
-  bindkey "${terminfo[kend]}"  end-of-line            # [End] - Go to end of line
-fi

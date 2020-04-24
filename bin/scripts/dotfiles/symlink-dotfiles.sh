@@ -39,21 +39,25 @@ for name in *; do
     target="$destination/.$name"
     if [ "$name" != 'README.md' ] && \
     [ "$name" != 'other-locations' ] &&
-    [ "$name" != 'bin' ]; then
+    [ "$name" != 'plasma' ] && \
+    [ "$name" != 'bin' ]
+    then
         backup $target
         symlink "$PWD/$name" "$target"
         
-        elif [ "$name" == 'other-locations' ]; then
+    elif [ "$name" == 'other-locations' ]
+    then
         pushd $name >>/dev/null 2>&1
         for subname in * .[^.]*; do
-            if [ "$subname" != '*' ] ; then
+            if [ "$subname" != '*' ]; then
                 target="$destination/"
                 cp -rs "$PWD/$subname" "$target"
             fi
         done
         popd >>/dev/null 2>&1
         
-        elif [ "$name" == 'bin' ]; then
+    elif [ "$name" == 'bin' ];
+    then
         target="$destination/$name"
         backup $target
         symlink "$PWD/$name" "$target"

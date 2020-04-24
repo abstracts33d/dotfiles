@@ -7,7 +7,6 @@
   "explorer.confirmDragAndDrop": false,
   "eslint.validate": ["javascript", "javascriptreact", "vue", "vue-html"],
   "eslint.run": "onType",
-  "eslint.autoFixOnSave": true,
   "eslint.enable": true,
   "eslint.lintTask.enable": true,
   "explorer.confirmDelete": false,
@@ -67,6 +66,6 @@
   "editor.codeActionsOnSave": {
     "source.fixAll.eslint": true
   },
-  "editor.fontFamily": "Hack",
+  "editor.fontFamily": "VictorMono Nerd Font Mono",
   "window.zoomLevel": -1
 }

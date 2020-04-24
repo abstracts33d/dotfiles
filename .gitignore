@@ -2,9 +2,6 @@ vim/nvim
 vim/snippets
 
 zsh/.zcompdump*
-zsh/antigen
-
-fzf
 
 *.zwc
 

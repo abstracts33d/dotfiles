@@ -8,6 +8,7 @@ function set_date_time() {
 
 function generate_and_set_locales() {
     echo "Generating and setting locale"
+    sed -i '/en_US.UTF-8 UTF-8/s/^#//g' /etc/locale.gen
     sed -i '/fr_FR.UTF-8 UTF-8/s/^#//g' /etc/locale.gen
     locale-gen
     echo "LANG=en_US.UTF-8" >> /etc/locale.conf

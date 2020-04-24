@@ -237,14 +237,7 @@ function mount_partitions() {
 function install_arch() {
     echo "Starting install.."
     echo "Installing Arch Linux, lvm, zsh, vim and GRUB2 as bootloader"
-    pacstrap /mnt \
-    base base-devel linux linux-firmware pacman-contrib \
-    grub os-prober intel-ucode efibootmgr \
-    dhcpcd netctl wpa_supplicant dialog \
-    lvm2 \
-    zsh \
-    git \
-    vim
+    pacstrap /mnt "${PACSTRAP_LIST[@]}"
 }
 
 function generate_fstab() {
@@ -256,10 +249,10 @@ function copy_chroot_needed_files() {
     echo "Copying files in chroot environment"
     cp -rfv arch-install.sh /mnt
     cp -rfv inside-chroot.sh /mnt
-    cp -rfv after-reboot.sh /mnt
+    
     chmod a+x /mnt/arch-install.sh
     chmod a+x /mnt/inside-chroot.sh
-    chmod a+x /mnt/after-reboot.sh
+    
     cp -rfv arch-install.config /mnt
     cp -rfv packages.config /mnt
 }

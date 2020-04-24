@@ -82,6 +82,41 @@ function customize_pacman() {
     pacman -Syu --noconfirm --needed
 }
 
+function install_yay() {
+    echo "Installing Yay"
+    git clone https://aur.archlinux.org/yay.git
+    cd yay
+    makepkg -si
+    cd ..
+    rm -rf yay
+}
+
+function install_packages() {
+    echo "Installing packages"
+    echo "${PACKAGE_LIST[@]}"
+    sudo pacman -Syu --noconfirm --needed "${PACKAGE_LIST[@]}"
+}
+
+function install_yay_packages() {
+    echo "Installing AUR packages with Yay"
+    echo "${YAY_PACKAGES_LIST[@]}"
+    yay -S "${YAY_PACKAGES_LIST[@]}"
+}
+
+function package_configuration() {
+    # REPTYR
+    echo "Enabling REPTYR usage"
+    sudo bash -c 'echo "kernel.yama.ptrace_scope=0" > /etc/sysctl.d/10-ptrace.conf'
+    echo "You will need to initialize databases systems etc..."
+    # TODO COMPLETE THIS SECTION WITH DATABASES ETC...
+}
+
+function enable_services() {
+    echo "Enabling services"
+    sudo systemctl enable sddm.service
+    sudo systemctl enable NetworkManager.service
+}
+
 function MAIN() {
     source arch-install.config
     set_date_time
@@ -94,8 +129,12 @@ function MAIN() {
     install_bootloader
     create_new_user
     customize_pacman
+    install_packages
+    install_yay
+    install_yay_packages
+    package_configuration
+    enable_services
     echo "Configuration done. You can now exit chroot and reboot."
-    echo "After rebooting run after-reboot.sh script by executing ./after-reboot.sh"
     echo "You will now have a fully working bootable Arch Linux system installed."
     echo "Have fun :)"
 }

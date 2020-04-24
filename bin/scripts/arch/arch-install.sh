@@ -240,7 +240,7 @@ function install_arch() {
     pacstrap /mnt \
     base base-devel linux linux-firmware pacman-contrib \
     grub os-prober intel-ucode efibootmgr \
-    netctl wpa_supplicant dialog \
+    dhcpcd netctl wpa_supplicant dialog \
     lvm2 \
     zsh \
     git \

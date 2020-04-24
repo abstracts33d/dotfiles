@@ -126,7 +126,7 @@ function MAIN() {
     set_date_time
     generate_and_set_locales
     set_console
-    rank_mirrors
+    # rank_mirrors
     set_hostname
     generate_intiramfs
     set_root_password

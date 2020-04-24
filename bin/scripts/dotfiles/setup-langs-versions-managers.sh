@@ -25,7 +25,7 @@ echo 'eval "$(pyenv virtualenv-init -)"' >> ~/.bash_profile
 # RBENV
 yay -S tklib zlib openssl libffi libxml2 libxslt readline
 
-RBENV_ROOT="$HOME/.pyenv"
+RBENV_ROOT="$HOME/.rbenv"
 
 git clone https://github.com/rbenv/rbenv.git $RBENV_ROOT
 git clone https://github.com/rbenv/ruby-build.git $RBENV_ROOT/plugins/ruby-build

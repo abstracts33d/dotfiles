@@ -168,9 +168,9 @@ function create_lvm() {
     get_lvm_partition_number
     pvcreate "${INSTALL_TARGET}${LVM_PART_NUMBER}"
     vgcreate $VG_NAME "${INSTALL_TARGET}${LVM_PART_NUMBER}"
+    lvcreate -L $LV_SWAP_SIZE -n swap $VG_NAME
     lvcreate -L $LV_ROOT_SIZE -n root $VG_NAME
     lvcreate -L $LV_HOME_SIZE -n home $VG_NAME
-    lvcreate -L $LV_SWAP_SIZE -n swap $VG_SWAP
 }
 
 # Format the BOOT partition
@@ -189,7 +189,6 @@ function format_boot_partition() {
 function format_partitions() {
     echo "Formating partitions"
     format_boot_partition
-    create_and_enable_swap
     mkswap /dev/$VG_NAME/swap
     mkfs -t $OTHERS_PART_TYPE "/dev/${VG_NAME}/root"
     mkfs -t $OTHERS_PART_TYPE "/dev/${VG_NAME}/home"

@@ -189,7 +189,7 @@ function format_boot_partition() {
 function format_partitions() {
     echo "Formating partitions"
     format_boot_partition
-    mkswap /dev/$VG_NAME/swap
+    mkswap "/dev/${VG_NAME}/swap"
     mkfs -t $OTHERS_PART_TYPE "/dev/${VG_NAME}/root"
     mkfs -t $OTHERS_PART_TYPE "/dev/${VG_NAME}/home"
 }

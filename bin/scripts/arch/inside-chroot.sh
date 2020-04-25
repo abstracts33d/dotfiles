@@ -1,13 +1,23 @@
 #!/usr/bin/env bash
 
+REGULAR="\\033[0;39m"
+YELLOW="\\033[1;33m"
+GREEN="\\033[1;32m"
+RED="\\033[1;31m"
+BLUE="\\033[1;34m"
+
+function log() {
+    echo -e $1$2$REGULAR
+}
+
 function set_date_time() {
-    echo "Setting date time"
+    log $BLUE "Setting date time"
     ln -sf /usr/share/zoneinfo/Europe/Paris /etc/localtime
     hwclock --systohc
 }
 
 function generate_and_set_locales() {
-    echo "Generating and setting locale"
+    log $BLUE "Generating and setting locale"
     sed -i '/en_US.UTF-8 UTF-8/s/^#//g' /etc/locale.gen
     sed -i '/fr_FR.UTF-8 UTF-8/s/^#//g' /etc/locale.gen
     locale-gen
@@ -16,18 +26,18 @@ function generate_and_set_locales() {
 
 
 function set_console() {
-    echo "Setting console keymap"
+    log $BLUE "Setting console keymap"
     echo "KEYMAP=fr-latin9" > /etc/vconsole.conf
 }
 
 function rank_mirrors() {
-    echo "Ranking pacman mirrors"
+    log $BLUE "Ranking pacman mirrors"
     mv /etc/pacman.d/mirrorlist /etc/pacman.d/mirrorlist.dist
     rankmirrors -n 6 /etc/pacman.d/mirrorlist.dist > /etc/pacman.d/mirrorlist
 }
 
 function set_hostname() {
-    echo 'Setting Hostname'
+    log $BLUE "Setting Hostname"
     echo "${HOST_NAME}" >> /etc/hostname
     echo "127.0.1.1 ${HOST_NAME}.localdomain  ${HOST_NAME}" >> /etc/hosts
 }
@@ -37,18 +47,18 @@ function add_lvm2_hook() {
 }
 
 function generate_intiramfs() {
-    echo 'Generating initramfs'
+    log $BLUE "Generating initramfs"
     add_lvm2_hook
     mkinitcpio -P
 }
 
 function set_root_password() {
-    echo 'Setting Root Password'
+    log $BLUE "Setting Root Password"
     echo root:$ROOT_PASSWORD | chpasswd
 }
 
 function install_bootloader() {
-    echo 'Installing and configuring bootloader'
+    echo "${BLUE}Installing and configuring bootloader"
     if [[ $PARTITIONING_SCHEME = "UEFI-GPT" ]];then
         grub-install --target=x86_64-efi --efi-directory=/boot/efi --bootloader-id=arch
         grub-mkconfig -o /boot/grub/grub.cfg
@@ -59,7 +69,7 @@ function install_bootloader() {
 }
 
 function create_new_user() {
-    echo "Creating new user ${USER_NAME}"
+    log $BLUE "Creating new user ${USER_NAME}"
     useradd -m -G wheel,power,input,storage,uucp,network -s /usr/bin/zsh $USER_NAME
     sed --in-place 's/^#\s*\(%wheel\s\+ALL=(ALL)\s\+ALL\)/\1/' /etc/sudoers
     echo $USER_NAME:$ROOT_PASSWORD | chpasswd
@@ -67,7 +77,7 @@ function create_new_user() {
 
 
 function customize_pacman() {
-    echo "Enabling multilib repo"
+    log $BLUE "Enabling pacman multilib repo"
     cat /etc/pacman.conf | sed -e '/^#\[multilib\]$/ {
     N; /\n#Include/ {
         s/^#//
@@ -77,14 +87,13 @@ function customize_pacman() {
     cat /tmp/pacman.conf > /etc/pacman.conf
     rm /tmp/pacman.conf
     
-    echo "Enabling Color"
+    log $BLUE "Enabling pacman colors"
     sudo sed --in-place 's/^#\s*\(Color\)/\1/' /etc/pacman.conf
     pacman -Syu --noconfirm --needed
 }
 
-function enable_services() {
-    echo "Enabling services"
-    sudo systemctl enable sddm.service
+function enable_network_mananger_service() {
+    log $BLUE "Enabling NetworkManager services"
     sudo systemctl enable NetworkManager.service
 }
 
@@ -100,10 +109,10 @@ function MAIN() {
     install_bootloader
     create_new_user
     customize_pacman
-    enable_services
-    echo "Configuration done. You can now exit chroot and reboot."
-    echo "You will now have a fully working bootable Arch Linux system installed."
-    echo "Have fun :)"
+    enable_network_mananger_service
+    log $GREEN "Configuration done. You can now exit chroot and reboot."
+    log $GREEN "You will now have a fully working bootable Arch Linux system installed."
+    log $GREEN "Have fun :)"
 }
 
 MAIN

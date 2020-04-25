@@ -16,11 +16,14 @@ function install_yay() {
 
 function install_yay_packages() {
     echo "Installing AUR packages with Yay"
-    echo "${YAY_PACKAGES_LIST[@]}"
-    yay -S "${YAY_PACKAGES_LIST[@]}"
+    echo "${YAY_PACKAGE_LIST[@]}"
+    yay -S "${YAY_PACKAGE_LIST[@]}"
 }
 
 function packages_configuration() {
+    # SDDM
+    echo "Enabling SDDM services"
+    sudo systemctl enable sddm.service
     # REPTYR
     echo "Enabling REPTYR usage"
     sudo bash -c 'echo "kernel.yama.ptrace_scope=0" > /etc/sysctl.d/10-ptrace.conf'
@@ -32,7 +35,7 @@ function packages_configuration() {
 }
 
 function MAIN() {
-    source arch-install.config
+    source ~/arch-install.config
     install_packages
     install_yay
     install_yay_packages

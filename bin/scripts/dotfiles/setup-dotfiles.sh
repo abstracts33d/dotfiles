@@ -1,26 +1,32 @@
 #!/usr/bin/env bash
 
+
 REGULAR="\\033[0;39m"
 YELLOW="\\033[1;33m"
 GREEN="\\033[1;32m"
 RED="\\033[1;31m"
-BLUE="\\034[1;31m"
+BLUE="\\033[1;34m"
 
+function log() {
+    echo -e $1$2$REGULAR
+}
+
+log $BLUE "Setting up dotfiles"
 
 pushd $HOME/dotfiles/bin/scripts/dotfiles  >>/dev/null 2>&1
 
-# setup languages versions managers
+log $BLUE "Setting up languages versions managers"
 source setup-langs-versions-managers.sh
-# symlink dotfiles
+log $BLUE "Symlinking dotfiles"
 source symlink-dotfiles.sh
-# setup tmux tpm
+log $BLUE "Setting up tpm (tmux plugin manager)"
 git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
-# install fzf
+log $BLUE "Installing fzf"
 $HOME/.fzf/install
 ln -s $HOME/dotfiles/fzf.zsh $HOME/.fzf.zsh
-# setup git
+log $BLUE "Setting up git"
 source setup-git.sh
 
 popd >>/dev/null 2>&1
 
-echo  "${GREEN}👌  dotfiles setup complete"
+log $GREEN "👌  dotfiles setup complete"

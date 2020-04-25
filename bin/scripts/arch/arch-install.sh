@@ -1,5 +1,15 @@
 #!/usr/bin/env bash
 
+REGULAR="\\033[0;39m"
+YELLOW="\\033[1;33m"
+GREEN="\\033[1;32m"
+RED="\\033[1;31m"
+BLUE="\\033[1;34m"
+
+function log() {
+    echo -e $1$2$REGULAR
+}
+
 function print_config() {
     echo "INSTALL_TARGET:      $INSTALL_TARGET"
     echo "PARTITIONING_SCHEME: $PARTITIONING_SCHEME"
@@ -57,7 +67,7 @@ function wipe_all_partitions() {
 }
 
 function wipe_device() {
-    echo "Wiping Device"
+    log $BLUE "Wiping Device"
     wipe_all_partitions
     dd if=/dev/zero of="$INSTALL_TARGET" bs=1M count=1
     flush
@@ -67,7 +77,7 @@ function wipe_device() {
 # to create the partitions programatically (rather than manually)
 # https://superuser.com/a/984637
 function create_partitions() {
-    echo "Creating Partitions"
+    log $BLUE "Creating Partitions"
     eval "create_partitions_$PARTITIONING_SCHEME"
     probe_partition
 }
@@ -164,7 +174,7 @@ function get_lvm_partition_number() {
 }
 
 function create_lvm() {
-    echo "Creating LVM PG VG LV"
+    log $BLUE "Creating LVM PG VG LV"
     get_lvm_partition_number
     pvcreate "${INSTALL_TARGET}${LVM_PART_NUMBER}"
     vgcreate $VG_NAME "${INSTALL_TARGET}${LVM_PART_NUMBER}"
@@ -187,7 +197,7 @@ function format_boot_partition() {
 }
 
 function format_partitions() {
-    echo "Formating partitions"
+    log $BLUE "Formating partitions"
     format_boot_partition
     mkswap "/dev/${VG_NAME}/swap"
     mkfs -t $OTHERS_PART_TYPE "/dev/${VG_NAME}/root"
@@ -195,12 +205,12 @@ function format_partitions() {
 }
 
 function setup_time() {
-    echo "Setting up time"
+    log $BLUE "Setting up time"
     timedatectl set-ntp true
 }
 
 function initialize_pacman_keyring() {
-    echo "Initializing pacman keyring"
+    log $BLUE "Initializing pacman keyring"
     pacman-key --init
     pacman-key --populate archlinux
     pacman-key --refresh-keys
@@ -227,7 +237,7 @@ function mount_boot_partition() {
 }
 
 function mount_partitions() {
-    echo "Mounting partitions"
+    log $BLUE "Mounting partitions"
     mount_root_partion_and_create_dirs
     mount_boot_partition
     mount /dev/$VG_NAME/home /mnt/home
@@ -235,18 +245,18 @@ function mount_partitions() {
 }
 
 function install_arch() {
-    echo "Starting install.."
-    echo "Installing Arch Linux, lvm, zsh, vim and GRUB2 as bootloader"
+    log $BLUE "Starting install.."
+    log $BLUE "Installing Arch Linux, lvm, zsh, vim and GRUB2 as bootloader"
     pacstrap /mnt "${PACSTRAP_LIST[@]}"
 }
 
 function generate_fstab() {
-    echo "Generating fstab"
+    log $BLUE "Generating fstab"
     genfstab -U /mnt >> /mnt/etc/fstab
 }
 
 function copy_chroot_needed_files() {
-    echo "Copying files in chroot environment"
+    log $BLUE "Copying files in chroot environment"
     cp -rfv arch-install.sh /mnt
     cp -rfv inside-chroot.sh /mnt
     
@@ -258,8 +268,10 @@ function copy_chroot_needed_files() {
 }
 
 function chroot() {
+    log $GREEN "Preinstall done"
     echo "After chrooting into newly installed OS, please run the inside-chroot.sh script by executing ./inside-chroot.sh"
     echo "Press any key to chroot..."
+    log $BLUE "Chrooting"
     read tmpvar
     arch-chroot /mnt /bin/bash
 }

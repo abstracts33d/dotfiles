@@ -257,19 +257,22 @@ function generate_fstab() {
 
 function copy_chroot_needed_files() {
     log $BLUE "Copying files in chroot environment"
-    cp -rfv arch-install.sh /mnt
-    cp -rfv inside-chroot.sh /mnt
+    mkdir /mnt/arch-install
+    cp -rfv arch-install.sh /mnt/arch-install
+    cp -rfv inside-chroot.sh /mnt/arch-install
+    cp -rfv after-reboot.sh /mnt/arch-install
     
-    chmod a+x /mnt/arch-install.sh
-    chmod a+x /mnt/inside-chroot.sh
+    cp -rfv arch-install.config /mnt/arch-install
+    cp -rfv packages.config /mnt/arch-install
     
-    cp -rfv arch-install.config /mnt
-    cp -rfv packages.config /mnt
+    chmod a+x /mnt/arch-install/arch-install.sh
+    chmod a+x /mnt/arch-install/inside-chroot.sh
+    chmod a+x /mnt/arch-install/after-reboot.sh
 }
 
 function chroot() {
     log $GREEN "Preinstall done"
-    echo "After chrooting into newly installed OS, please run the inside-chroot.sh script by executing ./inside-chroot.sh"
+    echo "After chrooting into newly installed OS, please run the inside-chroot.sh script by executing cd arch-install && ./inside-chroot.sh"
     echo "Press any key to chroot..."
     log $BLUE "Chrooting"
     read tmpvar

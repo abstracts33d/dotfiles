@@ -147,7 +147,7 @@
     call dein#add('jxnblk/vim-mdx-js')                        " syntax for mdx
   " }}}
   " Python{{{
-    call dein#add('lambdalisue/vim-pyenv')                    " activates the pyenv Python NEEDED for many plugins
+    " call dein#add('lambdalisue/vim-pyenv')                    " activates the pyenv Python NEEDED for many plugins
     call dein#add('PieterjanMontens/vim-pipenv')              " interactions with pipenv
     call dein#add('jmcantrell/vim-virtualenv')                " interaction with virtualenv
     if has('nvim')
@@ -201,9 +201,9 @@
   if (has("termguicolors"))
     set termguicolors
   endif
-  if (has('python3'))                                         " dynamically load python3 first for vim
-  endif
-  set pyxversion=3                                            " set python3 as default pyx version
+  " if (has('python3'))                                         " dynamically load python3 first for vim
+  " endif
+  " set pyxversion=3                                            " set python3 as default pyx version
   let mapleader = ','                                         " map leader to ,
   set mouse=a                                                 " copy outside of vim
   set clipboard+=unnamedplus                                  " set + registery as default

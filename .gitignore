@@ -5,10 +5,5 @@ vim/snippets
 zsh/.zcompdump*
 *.zwc
 
-# submodules
-zsh/antigen
-fzf
-fzf-tab
-
 # symlinked antigenrc
 .antigenrc

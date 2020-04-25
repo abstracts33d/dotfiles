@@ -19,8 +19,6 @@ log $BLUE "Setting up languages versions managers"
 source setup-langs-versions-managers.sh
 log $BLUE "Symlinking dotfiles"
 source symlink-dotfiles.sh
-log $BLUE "Setting up tpm (tmux plugin manager)"
-git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
 log $BLUE "Installing fzf"
 $HOME/.fzf/install
 ln -s $HOME/dotfiles/fzf.zsh $HOME/.fzf.zsh

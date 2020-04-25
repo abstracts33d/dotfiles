@@ -5,7 +5,7 @@ rubocop
 rubocop-performance
 pry
 pry-byebug
-pr--rails
+pry-rails
 pry-remote
 hub
 colored

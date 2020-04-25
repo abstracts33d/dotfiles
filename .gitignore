@@ -1,8 +1,14 @@
 vim/nvim
 vim/snippets
 
+# ZSH generated files
 zsh/.zcompdump*
-
 *.zwc
 
+# submodules
+zsh/antigen
+fzf
+fzf-tab
+
+# symlinked antigenrc
 .antigenrc

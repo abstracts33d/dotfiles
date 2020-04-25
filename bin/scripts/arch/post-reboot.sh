@@ -35,7 +35,8 @@ function packages_configuration() {
 }
 
 function MAIN() {
-    source ~/arch-install.config
+    source ~/arch-install/arch-install.config
+    source ~/arch-install/packages.config
     install_packages
     install_yay
     install_yay_packages

@@ -98,7 +98,8 @@ function enable_network_mananger_service() {
 }
 
 function MAIN() {
-    source arch-install.config
+    source /arch-install/arch-install.config
+    source /arch-install/packages.config
     set_date_time
     generate_and_set_locales
     set_console

@@ -280,7 +280,8 @@ function chroot() {
 }
 
 function MAIN() {
-    source arch-install.config
+    source /arch-install/arch-install.config
+    source /arch-installpackages.config
     print_config
     setup_network
     fs_warning

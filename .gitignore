@@ -5,5 +5,8 @@ vim/snippets
 zsh/.zcompdump*
 *.zwc
 
+# FZF install generated file
+fzf.zsh
+
 # symlinked antigenrc
 .antigenrc

@@ -17,6 +17,7 @@ source symlink-dotfiles.sh
 git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
 # install fzf
 $HOME/.fzf/install
+ln -s $HOME/dotfiles/fzf.zsh $HOME/.fzf.zsh
 # setup git
 source setup-git.sh
 

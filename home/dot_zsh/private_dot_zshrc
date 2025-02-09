@@ -118,7 +118,7 @@ unset key
 zstyle -d ':completion:*' format
 zstyle ':completion:*:descriptions' format '[%d]'
 
-# switch group with < and 
+# switch group with < and
 zstyle ':fzf-tab:*' switch-group '<' '>'
 
 # enable tmux-popup

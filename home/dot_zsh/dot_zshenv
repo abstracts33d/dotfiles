@@ -4,6 +4,8 @@
 # export PKG_CONFIG_PATH="/opt/homebrew/opt/libffi/lib/pkgconfig"
 
 export GPG_TTY=$(tty)\
-export WORKSPACE="$HOME/Dev"
 
-EDITOR=vim
+export EDITOR=nvim
+export VISUAL=nvim
+
+export WORKSPACE="$HOME/Dev"

@@ -1,3 +1,8 @@
+{{ if eq .chezmoi.os "linux" }}
+alias keys='eval `keychain --eval --agents ssh,gpg ~/.keys/ssh/krach_ed25519 B7366D08`'
+alias k="keys"
+{{ end }}
+
 alias gb="git branch -v"
 alias gbm="git checkout master"
 alias gr="git remote -v"

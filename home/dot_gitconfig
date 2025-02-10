@@ -1,8 +1,0 @@
-[user]
-	name = abstracts33d
-	email = abstract.s33d@gmail.com
-	signingkey = ED0590D7
-[gpg]
-	program = /opt/homebrew/bin/gpg
-[commit]
-	gpgsign = true

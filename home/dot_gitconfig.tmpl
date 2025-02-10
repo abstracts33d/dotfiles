@@ -1,0 +1,17 @@
+[user]
+	name = abstracts33d
+	email = abstract.s33d@gmail.com
+	{{ if eq .chezmoi.hostname "krach" }}
+	signingkey = B7366D08
+	{{ else if eq .chezmoi.hostname "aether" }}
+	signingkey = ED0590D7
+	{{ end }}
+[gpg]
+	program = /opt/homebrew/bin/gpg
+	{{ if eq .chezmoi.os "darwin" }}
+	program = /opt/homebrew/bin/gpg
+	{{ else if eq .chezmoi.os "linux" }}
+	program = /usr/bin/gpg
+	{{ end }}
+[commit]
+	gpgsign = true

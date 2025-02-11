@@ -148,7 +148,7 @@ bindkey '^I^I' autosuggest-accept
 #
 # FUNCTIONS
 #
-./$ZDOTDIR/functions/base
+. /$ZDOTDIR/functions/base
 
 # #
 # # AUTOMATIC TMUX ATTACH OR CREATE
@@ -158,6 +158,9 @@ bindkey '^I^I' autosuggest-accept
 # then
 #     tmux attach -t TMUX || tmux new -s TMUX
 # fi
+
+#LOAD GPG / SSH AGENT
+keychain --eval --agents ssh,gpg > /dev/null 2>&1
 
 echo ' ☠ Loaded'
 neofetch

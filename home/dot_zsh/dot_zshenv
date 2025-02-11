@@ -8,4 +8,13 @@ export GPG_TTY=$(tty)\
 export EDITOR=nvim
 export VISUAL=nvim
 
+export BROWSER=firefox
+
+export LANG="en_US.UTF-8"
+export LC_ALL=$LANG
+
 export WORKSPACE="$HOME/Dev"
+
+export PATH="$HOME/bin:$PATH"
+
+export HOMEBREW_NO_ANALYTICS=1

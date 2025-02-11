@@ -27,10 +27,13 @@ alias grip='grep -oE "([0-9]{1,3}[.]){3}[0-9]{1,3}"'
 alias ipv4="dig @resolver4.opendns.com myip.opendns.com +short -4"
 alias ipv6="dig @resolver1.ipv6-sandbox.opendns.com AAAA myip.opendns.com +short -6"
 
+
 alias lvim="nvim"
-alias vi="$EDITOR"
+alias vim='nvim'
+alias vi='nvim'
+alias v="nvim"
+
 alias view="less $CONFIG_FILE"
-alias vim="$EDITOR"
 
 alias ws="cd $WORKSPACE"
 
@@ -53,3 +56,38 @@ alias tl='tmux list-sessions'
 alias td='tmux detach'
 # Tmux Clear pane
 alias tc='clear; tmux clear-history; clear'
+
+###############################################################################
+# Coloured output, aliases and good defaults.
+###############################################################################
+
+alias du='du -csh'
+alias df='df -h'
+alias grep='grep --color=auto'
+alias diff="colordiff -ru"
+alias dmesg="dmesg --color"
+alias ccat='pygmentize -g'
+
+alias top="htop"
+alias gr='grep -RIi --no-messages'
+alias rg='rg -uuu'
+alias g="git"
+alias h="history"
+alias q='exit'
+alias how="howdoi --color"
+
+
+###############################################################################
+# File associations, i.e. suffix aliases
+###############################################################################
+# Source: https://thorsten-hans.com/5-types-of-zsh-aliases#suffix-aliases
+
+alias -s {md,markdown,rst,toml,json}=code
+alias -s {ape,avi,flv,m4a,mkv,mov,mp3,mp4,mpeg,mpg,ogg,ogm,wav,webm}=iina
+
+# Paste a repository URL in terminal, and have it cloned.
+alias -s git="git clone"
+
+
+# DEV
+alias std= 'bundle exec standardrb --fix'

@@ -87,11 +87,6 @@ function path() {
   echo -e "${PATH//:/\\n}"
 }
 
-# Mkdir then cd
-function mkd() {
-  mkdir -p $1 && cd $_
-}
-
 redactenv() {
   sed -E 's/=.*/=•••/g;t' <<< $(env | grep "$1")
 }

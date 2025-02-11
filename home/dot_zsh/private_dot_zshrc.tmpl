@@ -1,4 +1,6 @@
-# Start configuration added by Zim install {{{
+##############################################################
+########## Start configuration added by Zim install ##########
+##############################################################
 #
 # User configuration sourced by interactive shells
 #
@@ -7,9 +9,15 @@
 # Zsh configuration
 # -----------------
 
-setopt HIST_IGNORE_ALL_DUPS   # Remove older command from the history if a duplicate is to be added.
-unsetopt beep                 # No bell
-bindkey -v                    # Set editor default keymap to emacs (`-e`) or vi (`-v`)
+# Remove older command from the history if a duplicate is to be added.
+setopt HIST_IGNORE_ALL_DUPS
+
+# No bell
+unsetopt beep
+
+# Set editor default keymap to emacs (`-e`) or vi (`-v`)
+bindkey -v
+
 WORDCHARS=${WORDCHARS//[\/]}  # Remove path separator from WORDCHARS.
 
 # -----------------
@@ -22,13 +30,6 @@ WORDCHARS=${WORDCHARS//[\/]}  # Remove path separator from WORDCHARS.
 # --------------------
 # Module configuration
 # --------------------
-
-#
-# git
-#
-
-# Set a custom prefix for the generated aliases. The default prefix is 'G'.
-zstyle ':zim:git' aliases-prefix 'g'
 
 #
 # input
@@ -108,37 +109,41 @@ for key ('^[[B' '^N' ${terminfo[kcud1]}) bindkey ${key} history-substring-search
 for key ('k') bindkey -M vicmd ${key} history-substring-search-up
 for key ('j') bindkey -M vicmd ${key} history-substring-search-down
 unset key
-# }}} End configuration added by Zim install
-
-#
-# MISE
-#
-
-eval "$(mise activate zsh)"
 
 
 #
-# FZF-TAB
+# zsh-autosuggestions
+#
+
+# Set Autosuggestions key binging
+bindkey '^I^I' autosuggest-accept
+
+#
+# fzf-tab
 #
 
 # Fix completion list wrong format
 zstyle -d ':completion:*' format
 zstyle ':completion:*:descriptions' format '[%d]'
 
-# switch group with < and
+# Switch group with < and
 zstyle ':fzf-tab:*' switch-group '<' '>'
 
-# enable tmux-popup
+# Enable tmux-popup
 zstyle ':fzf-tab:*' fzf-command ftb-tmux-popup
 
+############################################################
+########## End configuration added by Zim install ##########
+############################################################
+
+{{ if eq .chezmoi.os "linux" amd  eq .chezmoi.arch = "amd64" }}
 #
-# ZSH-AUTOSUGGESTIONS
+# MISE
 #
 
-# Set Autosuggestions key binging
-bindkey '^I^I' autosuggest-accept
+eval "$(mise activate zsh)"
 
-
+{{- end }}
 #
 # ALIASES
 #
@@ -148,19 +153,33 @@ bindkey '^I^I' autosuggest-accept
 #
 # FUNCTIONS
 #
+
 . /$ZDOTDIR/functions/base
 
-# #
+#
 # # AUTOMATIC TMUX ATTACH OR CREATE
-# #
+#
 
 # if [ -z "$TMUX" ]
 # then
 #     tmux attach -t TMUX || tmux new -s TMUX
 # fi
 
-#LOAD GPG / SSH AGENT
+{{- if eq .chezmoi.os "linux" }}
+#
+# KEYCHAIN GPG / SSH AGENT LOADING
+#
+
 keychain --eval --agents ssh,gpg > /dev/null 2>&1
 
-echo ' ☠ Loaded'
-neofetch
+{{- end }}
+#
+# GREETINGS
+#
+
+if [ -z "$TMUX" ]
+then
+  neofetch
+else
+  echo ' ☠ Loaded ☠ '
+fi

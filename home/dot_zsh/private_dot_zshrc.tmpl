@@ -116,7 +116,13 @@ unset key
 #
 
 # Set Autosuggestions key binging
-bindkey '^^I' autosuggest-accept
+bindkey '\e\r' autosuggest-accept  # alt-enter
+
+#
+# fzf
+#
+
+bindkey -r "^[c" # unbind met
 
 #
 # fzf-tab

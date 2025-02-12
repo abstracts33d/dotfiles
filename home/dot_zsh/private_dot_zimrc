@@ -8,6 +8,10 @@
 # Modules
 #
 
+# Sets up ZVM
+zmodule jeffreytse/zsh-vi-mode
+# Sets up fzf-tab
+zmodule Aloxaf/fzf-tab
 # Configures fzf for faster fetching of files and directories names.
 zmodule fzf
 
@@ -22,10 +26,7 @@ zmodule utility
 # # Provides a convenient way to load ssh-agent.
 # zmodule ssh
 
-# Sets up ZVM
-zmodule jeffreytse/zsh-vi-mode
-# Sets up fzf-tab
-zmodule Aloxaf/fzf-tab
+
 # Sets up zoxide in zsh.
 zmodule kiesman99/zim-zoxide
 

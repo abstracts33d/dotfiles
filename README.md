@@ -11,12 +11,9 @@ list repositories to be cloned like tpm or fzf-tab
 fix keyboard settings in Arch
   gsettings list-recursively | grep '<Super>'
   gsettings set org.gnome.shell.keybindings toggle-quick-settings '["disabled"]'
+  gsettings set org.gnome.settings-daemon.plugins.media-keys screensaver '["disabled"]'
+  gsettings set org.gnome.shell.keybindings focus-active-notification '["disabled"]'
 
-  fix meta n
-  fix meta c
 
 Implement mod layer in karabiner-elements
   backspace del and  hjkl already dones
-
-fix zvm double tab not accepting autosuggest
-fix zvm ctrl R shortcut not working

@@ -22,6 +22,8 @@ zmodule utility
 # # Provides a convenient way to load ssh-agent.
 # zmodule ssh
 
+# Sets up ZVM
+zmodule jeffreytse/zsh-vi-mode
 # Sets up fzf-tab
 zmodule Aloxaf/fzf-tab
 # Sets up zoxide in zsh.

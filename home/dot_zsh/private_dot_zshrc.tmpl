@@ -142,7 +142,7 @@ zstyle ':fzf-tab:*' fzf-command ftb-tmux-popup
 ########## End configuration added by Zim install ##########
 ############################################################
 
-{{- if ne .chezmoi.hostname "alarm" }}
+{{- if ne .chezmoi.hostname "arch") }}
 #
 # MISE
 #
@@ -154,13 +154,13 @@ eval "$(mise activate zsh)"
 # ALIASES
 #
 
-. $ZDOTDIR/.aliases
+source $ZDOTDIR/.aliases
 
 #
 # FUNCTIONS
 #
 
-. /$ZDOTDIR/functions/base
+source /$ZDOTDIR/functions/base
 
 #
 # # AUTOMATIC TMUX ATTACH OR CREATE

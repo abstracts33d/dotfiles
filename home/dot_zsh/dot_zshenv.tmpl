@@ -17,7 +17,7 @@ export PATH="$HOME/bin:$PATH"
 export GITHUB_USERNAME="abstracts33d"
 
 {{- if eq .chezmoi.os "darwin" }}
-# needed for ruby 2.7.2 (otherzise ffi gem will not install)
+# needed for ruby 2.7.2 (otherwise ffi gem will not install)
 # export LDFLAGS="-L/opt/homebrew/opt/libffi/lib"
 # export CPPFLAGS="-I/opt/homebrew/opt/libffi/include"
 # export PKG_CONFIG_PATH="/opt/homebrew/opt/libffi/lib/pkgconfig"

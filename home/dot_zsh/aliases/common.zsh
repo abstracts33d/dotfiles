@@ -6,7 +6,6 @@ alias vim='nvim'
 alias vi='nvim'
 alias v="nvim"
 
-
 # Chezmoi
 alias cmcd="cd $(chezmoi source-path)"
 alias cmed="chezmoi edit"

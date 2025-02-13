@@ -1,8 +1,4 @@
-
-#
-# SESH FUNCTION
-#
-
+# Sesh function
 function s() {
   {
     exec </dev/tty
@@ -31,15 +27,6 @@ function gbd() {
     cut -c 3- |
     fzf --multi --preview="git log {} --"  --height 40% --reverse --border-label ' delete branch ' --border --prompt '⚡  '|
     xargs git branch --delete --force
-}
-
-# View homebrew casks
-function casks() {
-  curl "https://formulae.brew.sh/api/cask.json" |
-    jq '.[].token' |
-    tr -d '"' |
-    fzf --multi --preview="curl https://formulae.brew.sh/api/cask/{}.json | jq '.'" |
-    xargs brew install --cask
 }
 
 # What application is listening on any given port?
@@ -87,6 +74,7 @@ function path() {
   echo -e "${PATH//:/\\n}"
 }
 
+# Pretty print ENV
 redactenv() {
   sed -E 's/=.*/=•••/g;t' <<< $(env | grep "$1")
 }

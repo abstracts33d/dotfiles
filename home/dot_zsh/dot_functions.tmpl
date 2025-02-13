@@ -10,6 +10,6 @@
 source $ZDOTDIR/functions/common.zsh
 {{- if eq .chezmoi.os "linux" }}
 source $ZDOTDIR/functions/linux.zsh
-{{- if eq .chezmoi.os "darwin" }}
+{{- else if eq .chezmoi.os "darwin" }}
 source $ZDOTDIR/functions/darwin.zsh
 {{- end }}

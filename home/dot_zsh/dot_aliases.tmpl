@@ -7,9 +7,9 @@
 # ╚═╝  ╚═╝╚══════╝╚═╝╚═╝  ╚═╝╚══════╝╚══════╝╚══════╝
 #
 
-source $ZDOTDIR/aliases/base
+source $ZDOTDIR/aliases/common.zsh
 {{- if eq .chezmoi.os "linux" }}
-source $ZDOTDIR/aliases/linux
-{{- if eq .chezmoi.os "darwin" }}
-source $ZDOTDIR/aliases/darwin
+source $ZDOTDIR/aliases/linux.zsh
+{{- else if eq .chezmoi.os "darwin" }}
+source $ZDOTDIR/aliases/darwin.zsh
 {{- end }}

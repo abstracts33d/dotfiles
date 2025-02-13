@@ -142,7 +142,7 @@ zstyle ':fzf-tab:*' fzf-command ftb-tmux-popup
 ########## End configuration added by Zim install ##########
 ############################################################
 
-{{- if ne .chezmoi.hostname "arch" }}
+{{- if (and (ne .chezmoi.os "linux") (ne .chezmoi.arch "arm64")) }}
 #
 # MISE
 #

@@ -23,10 +23,10 @@ zstyle ':completion:*:descriptions' format '[%d]' # Fix completion list wrong fo
 zstyle ':fzf-tab:*' switch-group '<' '>'  # Switch group with < and
 zstyle ':fzf-tab:*' fzf-command ftb-tmux-popup  # Enable tmux-popup
 
-{{- if (and (eq .chezmoi.os "linux") (ne .chezmoi.arch "arm64")) }}
-
 # thefuck
 eval $(thefuck --alias)
+
+{{- if (and (eq .chezmoi.os "linux") (ne .chezmoi.arch "arm64")) }}
 
 # mise
 eval "$(mise activate zsh)"

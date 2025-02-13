@@ -1,5 +1,7 @@
 TODO
 
+sh -c "$(curl -fsLS get.chezmoi.io)" -- init --apply $GITHUB_USERNAME
+
 Collect tools to auto install
   in arch like pkg-list and yay
   in macos Brewfile
@@ -17,3 +19,4 @@ fix keyboard settings in Arch
 
 Implement mod layer in karabiner-elements
   backspace del and  hjkl already dones
+  del need reworking (conflict with trash on macos)

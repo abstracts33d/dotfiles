@@ -15,6 +15,8 @@ export PATH="$HOME/bin:$PATH"
 
 export GITHUB_USERNAME="abstracts33d"
 
+export STARSHIP_CONFIG=$HOME/.config/starship/starship.toml
+
 {{- if eq .chezmoi.os "darwin" }}
 # # needed for ruby 2.7.2 (otherwise ffi gem will not install)
 # export LDFLAGS="-L/opt/homebrew/opt/libffi/lib"

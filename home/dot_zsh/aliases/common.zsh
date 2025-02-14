@@ -6,6 +6,11 @@ alias vim='nvim'
 alias vi='nvim'
 alias v="nvim"
 
+#ssh
+alias ssh_krach='ssh s33d@$KRACH_IP'
+alias wol_krach="wakeonlan $KRACH_MAC"
+
+
 # Chezmoi
 alias cmcd="cd $(chezmoi source-path)"
 alias cmed="chezmoi edit"

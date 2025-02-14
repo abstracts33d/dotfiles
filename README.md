@@ -18,5 +18,16 @@ fix keyboard settings in Arch
 
 
 Implement mod layer in karabiner-elements
-  backspace del and  hjkl already dones
-  del need reworking (conflict with trash on macos)
+
+
+TODO
+  imporve dot_other_places (might be another way) (ATM only sshd config )
+
+SETUP WOL ON KRACH
+```
+  sudo nmcli con show
+  nmcli c modify "Wired connection 2" 802-3-ethernet.wake-on-lan magic
+```
+
+Save Karabiner elements rules
+Save keyboard shortcuts for linux (find more declarative wm)

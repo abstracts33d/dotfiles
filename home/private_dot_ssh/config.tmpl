@@ -2,12 +2,12 @@ Host github.com
     User git
     {{- if eq .chezmoi.hostname "krach" }}
     IdentityFile ~/.keys/ssh/krach_ed25519
-	{{- else if eq .chezmoi.hostname "aether" }}
+	  {{- else if eq .chezmoi.hostname "aether" }}
     AddKeysToAgent yes
     UseKeyChain yes
     IdentityFile ~/.keys/ssh/aether_ed25519
-	{{- end }}
-    
+	  {{- end }}
+
 Host heroku.com
     User git
     {{- if eq .chezmoi.hostname "krach" }}
@@ -17,3 +17,4 @@ Host heroku.com
     UseKeyChain yes
     IdentityFile ~/.keys/ssh/aether_ed25519
     {{- end }}
+

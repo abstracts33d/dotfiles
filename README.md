@@ -31,3 +31,6 @@ SETUP WOL ON KRACH
 
 Save Karabiner elements rules
 Save keyboard shortcuts for linux (find more declarative wm)
+
+compact 3rfan dotfiles in a .md  to setup arm64 arch inside UTM
+https://github.com/3rfaan/dotfiles

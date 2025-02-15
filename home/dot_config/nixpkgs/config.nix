@@ -1,0 +1,53 @@
+{
+  packageOverrides = pkgs: with pkgs; {
+    myPackages = pkgs.buildEnv {
+      name = "s33d-tools";
+      paths = [
+        ack
+        age
+        bat
+        bitwarden-cli
+        chezmoi
+        colordiff
+        coreutils
+        duf
+        eza
+        fd
+        fish
+        fzf
+        git
+        gnupg
+        grep
+        htop
+        imagemagick
+        libffi
+        mise
+        neofetch
+        neovim
+        nmap
+        nvm
+        pinentry-mac
+        procs
+        pygments
+        ranger
+        rbenv
+        rbenv/tap/openssl@1.0
+        redis
+        ripgrep
+        sesh
+        shellcheck
+        spotifyd
+        starship
+        thefuck
+        tldr
+        tmux
+        tree
+        wakeonlan
+        wget
+        yarn
+        yazi
+        zoxide
+      ];
+    };
+  };
+}

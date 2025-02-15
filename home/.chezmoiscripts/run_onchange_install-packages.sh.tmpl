@@ -17,6 +17,7 @@ EOF
 nix-env -iA nixpkgs.myPackages
 {{ end -}}
 
+bw config server https://vault.bitwarden.eu
 bw login
 export BW_SESSION=$(bw unlock --raw)
 

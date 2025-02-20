@@ -1,5 +1,8 @@
 TODO
 
+ export GITHUB_USERNAME=abstracts33d && curl -sfL https://raw.githubusercontent.com/$GITHUB_USERNAME/dotfiles/main/.startup.sh | bash
+
+
 sh -c "$(curl -fsLS get.chezmoi.io)" -- init --apply $GITHUB_USERNAME
 
 Collect tools to auto install

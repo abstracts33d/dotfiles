@@ -15,7 +15,7 @@ source $ZDOTDIR/.functions
 bindkey '\e\r' autosuggest-accept # Set Autosuggestions key binging to alt-enter
 
 # fzf
-bindkey -r "^[c" # unbind meta c
+bindkey -r "^[c" # unbind meta c # NOT WORKING
 
 # fzf-tab
 zstyle -d ':completion:*' format  # Fix completion list wrong format
@@ -41,7 +41,7 @@ keychain --eval --agents ssh,gpg > /dev/null 2>&1
 # greetings
 if [ -z "$TMUX" ]
 then
-  neofetch
+  fastfetch
 else
   echo ' ☠ Loaded ☠ '
 fi

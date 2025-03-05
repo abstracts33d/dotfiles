@@ -26,11 +26,8 @@ zstyle ':fzf-tab:*' fzf-command ftb-tmux-popup  # Enable tmux-popup
 # thefuck
 eval $(thefuck --alias)
 
-{{- if (and (eq .chezmoi.os "linux") (ne .chezmoi.arch "arm64")) }}
-
 # mise
 eval "$(mise activate zsh)"
-{{- end }}
 
 {{- if eq .chezmoi.os "linux" }}
 
